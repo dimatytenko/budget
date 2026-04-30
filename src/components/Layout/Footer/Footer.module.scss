@@ -1,0 +1,10 @@
+.footer {
+  display: none;
+  background-color: #a38484;
+  padding: 20px 0;
+  border-top: 1px solid #e0e0e0;
+
+  @include media-down($breakpoint-m) {
+    display: block;
+  }
+}
