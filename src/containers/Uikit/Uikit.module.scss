@@ -1,5 +1,21 @@
 .page_wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  gap: 40px;
+  align-items: flex-start;
+  min-height: 100%;
+  padding: 40px;
+}
+
+.title {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.back_icon {
+  transform: rotate(180deg);
 }

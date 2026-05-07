@@ -5,6 +5,8 @@ import { PageLoader } from './ui-kit';
 import { routes } from '@/constants/routes';
 import { PrivateRoute, OnboardingRoute } from '@/containers/Routes';
 
+const OnboardingPage = lazy(() => import('@/containers/Onboarding'));
+
 // UI Kit
 const Uikit = lazy(() => import('@/containers/Uikit'));
 
@@ -14,7 +16,7 @@ const PublicRoutes = [
     path={routes.onboarding}
     element={
       <OnboardingRoute>
-        <div>Onboarding Page</div>
+        <OnboardingPage />
       </OnboardingRoute>
     }
   />,

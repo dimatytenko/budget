@@ -1,0 +1,36 @@
+.progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 45px;
+
+  @include media-down($breakpoint-m) {
+    gap: 24px;
+  }
+}
+
+.dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 45px;
+
+  @include media-down($breakpoint-m) {
+    gap: 24px;
+  }
+}
+
+.dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: $color-accent;
+}
+
+.active {
+  background-color: $color-brand;
+}
+
+.counter {
+  color: $color-brand;
+  font-size: 24px;
+  font-weight: $font-weight-semibold;
+}
