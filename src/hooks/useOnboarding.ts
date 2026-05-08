@@ -27,8 +27,7 @@ const onboardingSlides: OnboardingSlide[] = [
   },
   {
     title: 'Take time to think',
-    description:
-      'Worthy encourages you to take a pause before buying with a reflection timer. Good decisions take time.',
+    description: 'Good decisions take time. Worthy encourages you to take a pause before buying.',
     image: worthyTimeImg,
   },
   {

@@ -28,11 +28,10 @@ const Onboarding: React.FC<OnboardingProps> = ({
     <section className={styles.page}>
       <header className={styles.header}>
         <Logo />
-        <Button variant="ghost" text="Skip" onClick={handleSkip} />
       </header>
 
       <div className={styles.content}>
-        <div className={styles.content_text}>
+        <div className={styles.content_inner}>
           <h1 className={styles.title}>{currentSlide.title}</h1>
           <p className={styles.description}>{currentSlide.description}</p>
 
@@ -49,18 +48,18 @@ const Onboarding: React.FC<OnboardingProps> = ({
             <Button
               variant="primary"
               icon={'ArrowRightIcon'}
-              text={isLastStep ? 'Go to dashboard' : isFirstStep ? 'Let`s get started' : 'Next'}
+              text={isLastStep ? 'Go to dashboard' : isFirstStep ? 'Try it FREE' : 'Next'}
               onClick={handleNext}
             />
+          </div>
+          <div className={styles.progress_wrapper}>
+            <StepProgress current={currentStep} total={totalSteps} />
+            {!isLastStep && <Button variant="ghost" text="Skip" onClick={handleSkip} />}
           </div>
         </div>
 
         <img className={styles.illustration} src={currentSlide.image} alt={currentSlide.title} />
       </div>
-
-      <footer className={styles.footer}>
-        <StepProgress current={currentStep} total={totalSteps} />
-      </footer>
     </section>
   );
 };
