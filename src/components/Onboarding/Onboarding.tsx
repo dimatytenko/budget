@@ -60,6 +60,9 @@ const Onboarding: React.FC<OnboardingProps> = ({
 
         <img className={styles.illustration} src={currentSlide.image} alt={currentSlide.title} />
       </div>
+      {isLastStep && (
+        <p className={styles.last_step_description}>Let’s make every decision a worthy one. 💚</p>
+      )}
     </section>
   );
 };

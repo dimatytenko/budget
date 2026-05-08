@@ -1,0 +1,160 @@
+.shell {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: min(1224px, calc(100vw - 48px));
+  max-width: 100%;
+  border-radius: inherit;
+  overflow: auto;
+
+  @include media-up($breakpoint-m) {
+    display: grid;
+    grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
+    align-items: stretch;
+  }
+}
+
+.form_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  padding: 100px 24px 40px 24px;
+
+  @include media-up($breakpoint-m) {
+    flex: unset;
+    width: 100%;
+    padding: 32px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 390px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: $font-weight-bold;
+  line-height: 1.1;
+  color: #282c34;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #5f6675;
+  margin-bottom: 40px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.login_button {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  gap: 11px;
+  margin: 40px 0;
+}
+
+.divider_line {
+  flex-shrink: 0;
+  flex-grow: 1;
+  height: 1px;
+  background-color: #e9edeb;
+}
+
+.divider_text {
+  font-size: 15px;
+  color: #5f6675;
+}
+
+.footer {
+  font-size: 15px;
+  text-align: center;
+  color: #5f6675;
+  margin-bottom: 56px;
+}
+
+.footer_link {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: $font-weight-bold;
+  color: $color-brand;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.lock_icon_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lock_icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.lock_icon_text {
+  color: #5a7a66;
+  font-size: 14px;
+}
+
+.aside {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 40px 32px 48px;
+  background-color: $color-bg-primary;
+  text-align: center;
+
+  @include media-up($breakpoint-m) {
+    display: flex;
+    align-self: stretch;
+    min-width: 0;
+    min-height: 100%;
+  }
+}
+
+.illustration {
+  display: block;
+  width: min(240px, 70%);
+  height: auto;
+  margin-bottom: 28px;
+  object-fit: contain;
+}
+
+.brand {
+  color: #165028;
+  text-align: center;
+  font-size: 64px;
+  font-weight: $font-weight-bold;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.slogan {
+  text-align: center;
+  font-size: 20px;
+}

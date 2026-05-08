@@ -1,5 +1,5 @@
 import styles from './Uikit.module.scss';
-import { Button, Logo, StepProgress } from '@/ui-kit';
+import { Button, Input, Logo, StepProgress } from '@/ui-kit';
 
 const Uikit = () => {
   return (
@@ -12,6 +12,26 @@ const Uikit = () => {
       </div>
 
       <StepProgress current={1} total={4} />
+
+      <section className={styles.section}>
+        <h2 className={styles.subtitle}>Inputs</h2>
+        <div className={styles.inputs_column}>
+          <Input
+            label="Email"
+            type="email"
+            name="uikit-email"
+            placeholder="Enter your email"
+            autoComplete="email"
+          />
+          <Input
+            label="Password"
+            type="password"
+            name="uikit-password"
+            placeholder="Enter your password"
+            autoComplete="current-password"
+          />
+        </div>
+      </section>
 
       <div className={styles.row}>
         <Button

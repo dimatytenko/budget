@@ -11,6 +11,25 @@
   margin: 0;
 }
 
+.subtitle {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inputs_column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+}
+
 .row {
   display: flex;
   gap: 20px;

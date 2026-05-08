@@ -9,6 +9,7 @@ const OnboardingPage = lazy(() => import('@/containers/Onboarding'));
 
 // UI Kit
 const Uikit = lazy(() => import('@/containers/Uikit'));
+const Dashboard = lazy(() => import('@/containers/Dashboard'));
 
 const PublicRoutes = [
   <Route
@@ -20,7 +21,7 @@ const PublicRoutes = [
       </OnboardingRoute>
     }
   />,
-  <Route key="dashboard" path={routes.dashboard} element={<div>Dashboard Page</div>} />,
+  <Route key="dashboard" path={routes.dashboard} element={<Dashboard />} />,
 ];
 
 const PrivateRoutes = [
