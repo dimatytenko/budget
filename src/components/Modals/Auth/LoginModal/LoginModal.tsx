@@ -29,7 +29,7 @@ const LoginModal = ({ isOpen, onClose, onSubmit, goToRegister }: RegisterModalPr
             }}
             noValidate
           >
-            <h2 className={styles.title}>Save your analysis</h2>
+            <h2 className={styles.title}>Welcome back!</h2>
             <p className={styles.subtitle}>
               Log in or create an account to save your analysis and track your future decisions.
             </p>

@@ -15,6 +15,11 @@
   height: 18px;
   border-radius: 50%;
   background-color: $color-accent;
+
+  @include media-down($breakpoint-m) {
+    width: 12px;
+    height: 12px;
+  }
 }
 
 .active {
@@ -25,4 +30,8 @@
   color: $color-brand;
   font-size: 18px;
   font-weight: $font-weight-semibold;
+
+  @include media-down($breakpoint-m) {
+    font-size: 12px;
+  }
 }

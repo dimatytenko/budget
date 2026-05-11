@@ -50,6 +50,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
               icon={'ArrowRightIcon'}
               text={isLastStep ? 'Go to dashboard' : isFirstStep ? 'Try it FREE' : 'Next'}
               onClick={handleNext}
+              className={styles.next_button}
             />
           </div>
           <div className={styles.progress_wrapper}>

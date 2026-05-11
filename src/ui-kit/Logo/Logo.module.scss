@@ -2,12 +2,21 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+
+  @include media-down($breakpoint-m) {
+    gap: 4px;
+  }
 }
 
 .icon {
-  width: 42px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
+
+  @include media-down($breakpoint-m) {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 .text {
@@ -15,4 +24,8 @@
   font-size: 32px;
   font-weight: $font-weight-semibold;
   line-height: 1;
+
+  @include media-down($breakpoint-m) {
+    font-size: 24px;
+  }
 }

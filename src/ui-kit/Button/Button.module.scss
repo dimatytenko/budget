@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 0px;
   min-height: 46px;
-  padding: 12px 32px;
+  padding: 10px 32px;
   border-radius: 16px;
   border: 1.6px solid transparent;
   font-family: $font-family-primary;
@@ -14,6 +14,10 @@
   cursor: pointer;
   transition: opacity $transition-primary, background-color $transition-primary,
     border-color $transition-primary, color $transition-primary;
+
+  @include media-down($breakpoint-m) {
+    padding: 10px 24px;
+  }
 
   &:disabled {
     opacity: 0.6;
@@ -59,12 +63,15 @@
   padding: 0;
   color: $color-secondary;
   border: none;
-  background-color: transparent;
-  font-weight: $font-weight-medium;
   font-size: 24px;
   font-weight: $font-weight-medium;
+  background-color: transparent;
 
   &:hover:not(:disabled) {
     color: $color-brand;
+  }
+
+  @include media-down($breakpoint-m) {
+    font-size: 12px;
   }
 }

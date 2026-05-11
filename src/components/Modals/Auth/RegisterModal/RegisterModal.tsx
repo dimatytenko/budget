@@ -52,19 +52,25 @@ const RegisterModal = ({ isOpen, onClose, onSubmit, goToLogin }: RegisterModalPr
                 onChange={(ev) => setEmail(ev.target.value)}
                 required
               />
-              <Input
-                label="Password"
-                type="password"
-                name="password"
-                autoComplete="new-password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(ev) => {
-                  setPassword(ev.target.value);
-                  setPasswordMismatch(false);
-                }}
-                required
-              />
+              <div className={styles.password_field_group}>
+                <Input
+                  label="Password"
+                  type="password"
+                  name="password"
+                  autoComplete="new-password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(ev) => {
+                    setPassword(ev.target.value);
+                    setPasswordMismatch(false);
+                  }}
+                  aria-describedby="register-password-hint"
+                  required
+                />
+                <p id="register-password-hint" className={styles.password_hint}>
+                  At least 8 characters with a number or special character
+                </p>
+              </div>
               <Input
                 label="Confirm password"
                 type="password"
