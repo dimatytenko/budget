@@ -6,9 +6,10 @@ import { routes } from '@/constants/routes';
 
 interface FooterProps {
   pathname: string;
+  isAuth: boolean;
 }
 
-const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC<FooterProps> = ({ isAuth }) => {
   const navigate = useNavigate();
   return (
     <footer className={styles.footer}>
@@ -21,12 +22,14 @@ const Footer: React.FC<FooterProps> = () => {
               className={styles.button}
               onClick={() => navigate(routes.purchase)}
             />
-            <Button
-              text="History"
-              variant="secondary"
-              className={styles.button}
-              onClick={() => navigate(routes.history)}
-            />
+            {isAuth && (
+              <Button
+                text="History"
+                variant="secondary"
+                className={styles.button}
+                onClick={() => navigate(routes.history)}
+              />
+            )}
           </div>
           <p className={styles.text_copyright}>© 2026 Worthy. All rights reserved.</p>
         </div>

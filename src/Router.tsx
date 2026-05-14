@@ -6,10 +6,12 @@ import { routes } from '@/constants/routes';
 import { PrivateRoute, OnboardingRoute } from '@/containers/Routes';
 
 const OnboardingPage = lazy(() => import('@/containers/Onboarding'));
+const PurchasePage = lazy(() => import('@/containers/Purchase'));
+const ProfilePage = lazy(() => import('@/containers/Profile'));
+const HistoryPage = lazy(() => import('@/containers/History'));
 
 // UI Kit
 const Uikit = lazy(() => import('@/containers/Uikit'));
-const Purchase = lazy(() => import('@/containers/Purchase'));
 
 const PublicRoutes = [
   <Route
@@ -21,16 +23,29 @@ const PublicRoutes = [
       </OnboardingRoute>
     }
   />,
-  <Route key="purchase" path={routes.purchase} element={<Purchase />} />,
+  <Route key="purchase" path={routes.purchase} element={<PurchasePage />} />,
 ];
 
 const PrivateRoutes = [
-  // Profile
-  <Route key="profile" path={routes.profile} element={<div>Profile Page</div>} />,
-  // Purchase
-  <Route key="purchase" path={routes.purchase} element={<div>Purchase Page</div>} />,
-  // History
-  <Route key="history" path={routes.history} element={<div>History Page</div>} />,
+  <Route
+    key="profile"
+    path={routes.profile}
+    element={
+      <PrivateRoute>
+        <ProfilePage />
+      </PrivateRoute>
+    }
+  />,
+
+  <Route
+    key="history"
+    path={routes.history}
+    element={
+      <PrivateRoute>
+        <HistoryPage />
+      </PrivateRoute>
+    }
+  />,
 
   // Ui Kit Example
   <Route

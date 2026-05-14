@@ -19,6 +19,7 @@ export const useGetUser = () => {
 
   return {
     user,
+    isExistUser: !!user,
   };
 };
 

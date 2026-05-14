@@ -1,10 +1,85 @@
 .header {
   background-color: $color-light;
   padding: 12px 0;
+  border-bottom: 1px solid $color-border;
 }
 
 .content {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+}
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: 24px;
+
+  @include media-up($breakpoint-m) {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.navLink {
+  color: #335833;
+  font-size: 16px;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.navLinkActive {
+  font-weight: $font-weight-semibold;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: $color-brand;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-brand;
+    outline-offset: 2px;
+  }
+}
+
+.iconButtonActive {
+  opacity: 1;
+  background-color: rgba($color-brand, 0.08);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }

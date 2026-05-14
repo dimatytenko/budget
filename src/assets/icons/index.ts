@@ -6,6 +6,8 @@ import MailIcon from './mail.svg?react';
 import LockIcon from './lock.svg?react';
 import EyeIcon from './eye.svg?react';
 import EyeOffIcon from './eye-off.svg?react';
+import AccountIcon from './account.svg?react';
+import LogoutIcon from './logout.svg?react';
 
 export {
   LogoIcon,
@@ -16,4 +18,6 @@ export {
   LockIcon,
   EyeIcon,
   EyeOffIcon,
+  AccountIcon,
+  LogoutIcon,
 };

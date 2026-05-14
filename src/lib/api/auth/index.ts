@@ -14,5 +14,5 @@ export const authApi = {
   updateUser: (data: UpdateUserCredentials) =>
     apiInstance.patch<UserTypeResponse>('/users/update', data),
   getMe: () => apiInstance.get<UserTypeResponse>('/users/me'),
-  logout: () => apiInstance.patch<void>('/users/logout'),
+  logout: () => apiInstance.post<void>('/users/logout'),
 };
