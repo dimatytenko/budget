@@ -16,15 +16,27 @@ export const useUserStore = create<UserState>((set) => ({
   setIsRefreshing: (value) => set({ isRefreshing: value }),
   user: null,
   setUser: (rawUser) => {
-    const { id, email, name, surname, salary } = rawUser;
+    const {
+      id,
+      email,
+      firstName,
+      lastName,
+      salary,
+      workHoursByWeek,
+      expectReturnPercentage,
+      investForYear,
+    } = rawUser;
 
     set({
       user: {
         id,
-        name,
-        surname,
-        salary,
         email,
+        firstName,
+        lastName,
+        salary,
+        workHoursByWeek,
+        expectReturnPercentage,
+        investForYear,
       },
     });
   },

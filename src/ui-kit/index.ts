@@ -5,8 +5,9 @@ import { Logo } from './Logo';
 import { StepProgress } from './StepProgress';
 import ButtonClose from './ButtonClose';
 import Modal from './Modal';
+import ErrorMessage from './ErrorMessage';
 
-export { Button, Input, Loader, Logo, PageLoader, StepProgress, ButtonClose, Modal };
+export { Button, Input, Loader, Logo, PageLoader, StepProgress, ButtonClose, Modal, ErrorMessage };
 export type { ButtonProps, ButtonVariant, IconPosition } from './Button';
 export type { InputProps, InputType } from './Input';
 export type { LogoProps } from './Logo';

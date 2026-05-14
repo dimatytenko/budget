@@ -1,0 +1,118 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  width: 100%;
+
+  @include media-down($breakpoint-m) {
+    gap: 32px;
+  }
+}
+
+.card {
+  background-color: $color-light;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @include media-down($breakpoint-m) {
+    padding: 16px;
+  }
+}
+
+.card_header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card_icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: $color-dark;
+}
+
+.card_title {
+  color: #2d2d2d;
+  font-size: 18px;
+  font-weight: $font-weight-semibold;
+  line-height: 1.1;
+}
+
+.fields_row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.email_field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.email_label {
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  color: #1a1a1a;
+}
+
+.email_icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: #4a4a4a;
+}
+
+.email_display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  color: $color-font-tertiary;
+  background: transparent;
+
+  svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: $color-dark;
+  }
+}
+
+.card_footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.logo_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 26px;
+  }
+}
+
+.save_btn {
+  @include media-down($breakpoint-m) {
+    width: 100%;
+    max-width: 300px;
+  }
+}

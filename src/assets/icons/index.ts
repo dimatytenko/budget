@@ -8,6 +8,7 @@ import EyeIcon from './eye.svg?react';
 import EyeOffIcon from './eye-off.svg?react';
 import AccountIcon from './account.svg?react';
 import LogoutIcon from './logout.svg?react';
+import DollarIcon from './dollar.svg?react';
 
 export {
   LogoIcon,
@@ -20,4 +21,5 @@ export {
   EyeOffIcon,
   AccountIcon,
   LogoutIcon,
+  DollarIcon,
 };

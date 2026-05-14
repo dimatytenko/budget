@@ -11,17 +11,7 @@ export interface AuthCredentials {
   password: string;
 }
 
-export interface UpdateUserCredentials {
-  name: string;
-  surname: string;
-  salary: number;
-}
-
 export type AuthUserTypeResponse = BaseResponseInterface<{
   token: string;
-  user: BaseUserInterface;
-}>;
-
-export type UserTypeResponse = BaseResponseInterface<{
   user: BaseUserInterface;
 }>;

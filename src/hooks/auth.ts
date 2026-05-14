@@ -6,6 +6,7 @@ import { apiToken } from '@/lib/api/axiosInstance';
 import { useUser, useRefreshingUser } from '@/hooks/user';
 import { getApiErrorMessage } from '@/lib/api/handleApiError';
 import changeInputValues from '@/utils/changeInputValues';
+import { userApi } from '@/lib/api/user';
 
 export const useAuthModals = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -147,7 +148,7 @@ export const useFetchSession = () => {
 
       try {
         apiToken.set(tokenValue); // set token axios instance
-        const { data } = await authApi.getMe();
+        const { data } = await userApi.getMe();
         setUser(data?.data?.user || null); // set user to store
       } catch {
         clearUser(); // clear user from store
