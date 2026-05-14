@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { routes } from '@/constants/routes';
+import { usePassedOnboarding } from '@/hooks/usePassedOnboarding';
 import worthyCheckImg from '@/assets/images/worthy/worthy-check.png';
 import worthyHandUpImg from '@/assets/images/worthy/worthy-hand-up.png';
 import worthyLookImg from '@/assets/images/worthy/worthy-look.png';
@@ -40,6 +41,7 @@ const onboardingSlides: OnboardingSlide[] = [
 
 const useOnboarding = () => {
   const navigate = useNavigate();
+  const { markPassedOnboarding } = usePassedOnboarding();
   const [currentStep, setCurrentStep] = useState(1);
 
   const totalSteps = onboardingSlides.length;
@@ -53,9 +55,14 @@ const useOnboarding = () => {
     setCurrentStep(nextStep);
   };
 
+  const completeOnboarding = () => {
+    markPassedOnboarding();
+    navigate(routes.purchase);
+  };
+
   const handleNext = () => {
     if (isLastStep) {
-      navigate(routes.purchase);
+      completeOnboarding();
       return;
     }
 
@@ -68,7 +75,7 @@ const useOnboarding = () => {
   };
 
   const handleSkip = () => {
-    navigate(routes.purchase);
+    completeOnboarding();
   };
 
   return {

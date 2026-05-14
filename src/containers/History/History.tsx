@@ -1,13 +1,7 @@
-interface HistoryProps {
-  title?: string;
-}
+import History from '@/components/History';
 
-const HistoryPage: React.FC<HistoryProps> = ({ title }) => {
-  return (
-    <div>
-      <h1>{title}</h1>
-    </div>
-  );
+const HistoryPage: React.FC = () => {
+  return <History />;
 };
 
 export default HistoryPage;

@@ -1,3 +1,5 @@
+import PageWrapper from '@/components/Layout/PageWrapper';
+
 import { Button } from '@/ui-kit';
 
 interface PurchaseProps {
@@ -6,9 +8,12 @@ interface PurchaseProps {
 
 const Purchase: React.FC<PurchaseProps> = ({ openLoginModal }) => {
   return (
-    <div>
+    <PageWrapper
+      title="Add new purchase"
+      subtitle="Enter details and set a timer to make a mindful decision."
+    >
       <Button text="Open Login Modal" onClick={openLoginModal} />
-    </div>
+    </PageWrapper>
   );
 };
 

@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
 import { useGetUser } from '@/hooks/user';
+import { usePassedOnboarding } from '@/hooks/usePassedOnboarding';
 import { routes } from '@/constants/routes';
 
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -13,7 +14,7 @@ export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
 
 export const OnboardingRoute = ({ children }: { children: React.ReactNode }) => {
   const { isExistUser } = useGetUser();
-  const isPassedOnboarding = true;
+  const { isPassedOnboarding } = usePassedOnboarding();
 
   if (isPassedOnboarding || isExistUser) return <Navigate to={routes.purchase} replace />;
 

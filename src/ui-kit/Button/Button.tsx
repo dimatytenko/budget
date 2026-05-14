@@ -47,7 +47,7 @@ export const Button = ({
       {...props}
     >
       {isLoading && (
-        <span className={styles.loaderSlot} aria-hidden>
+        <span className={styles.loader_slot} aria-hidden>
           <Loader size="sm" />
         </span>
       )}

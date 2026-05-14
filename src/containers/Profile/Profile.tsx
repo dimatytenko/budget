@@ -1,13 +1,7 @@
-interface ProfileProps {
-  title?: string;
-}
+import Profile from '@/components/Profile';
 
-const ProfilePage: React.FC<ProfileProps> = ({ title }) => {
-  return (
-    <div>
-      <h1>{title}</h1>
-    </div>
-  );
+const ProfilePage: React.FC = () => {
+  return <Profile />;
 };
 
 export default ProfilePage;
