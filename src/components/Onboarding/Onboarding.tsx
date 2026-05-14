@@ -43,6 +43,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
                 iconPosition="left"
                 text="Back"
                 onClick={handleBack}
+                className={styles.button}
               />
             )}
             <Button
@@ -50,7 +51,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
               icon={'ArrowRightIcon'}
               text={isLastStep ? 'Go to dashboard' : isFirstStep ? 'Try it FREE' : 'Next'}
               onClick={handleNext}
-              className={styles.next_button}
+              className={styles.button}
             />
           </div>
           <div className={styles.progress_wrapper}>

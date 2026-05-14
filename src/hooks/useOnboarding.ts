@@ -55,7 +55,7 @@ const useOnboarding = () => {
 
   const handleNext = () => {
     if (isLastStep) {
-      navigate(routes.dashboard);
+      navigate(routes.purchase);
       return;
     }
 
@@ -68,7 +68,7 @@ const useOnboarding = () => {
   };
 
   const handleSkip = () => {
-    navigate(routes.dashboard);
+    navigate(routes.purchase);
   };
 
   return {

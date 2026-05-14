@@ -1,11 +1,9 @@
 export interface BaseUserInterface {
-  _id: string;
-  avatar: string;
+  id: string;
   email: string;
-}
-
-export interface AuthUserInterface extends BaseUserInterface {
-  token: string;
+  name: string;
+  surname: string;
+  salary: number;
 }
 
 export type UserType = BaseUserInterface | null;

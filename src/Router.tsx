@@ -9,7 +9,7 @@ const OnboardingPage = lazy(() => import('@/containers/Onboarding'));
 
 // UI Kit
 const Uikit = lazy(() => import('@/containers/Uikit'));
-const Dashboard = lazy(() => import('@/containers/Dashboard'));
+const Purchase = lazy(() => import('@/containers/Purchase'));
 
 const PublicRoutes = [
   <Route
@@ -21,14 +21,16 @@ const PublicRoutes = [
       </OnboardingRoute>
     }
   />,
-  <Route key="dashboard" path={routes.dashboard} element={<Dashboard />} />,
+  <Route key="purchase" path={routes.purchase} element={<Purchase />} />,
 ];
 
 const PrivateRoutes = [
   // Profile
   <Route key="profile" path={routes.profile} element={<div>Profile Page</div>} />,
-  // Items
-  <Route key="items" path={routes.items} element={<div>Items Page</div>} />,
+  // Purchase
+  <Route key="purchase" path={routes.purchase} element={<div>Purchase Page</div>} />,
+  // History
+  <Route key="history" path={routes.history} element={<div>History Page</div>} />,
 
   // Ui Kit Example
   <Route
@@ -48,7 +50,7 @@ const RoutesSwitch = () => {
       <Routes>
         {PublicRoutes}
         {PrivateRoutes}
-        <Route path="*" element={<Navigate to={routes.dashboard} replace />} />
+        <Route path="*" element={<Navigate to={routes.purchase} replace />} />
       </Routes>
     </Suspense>
   );

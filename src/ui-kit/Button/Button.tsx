@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import type { ButtonHTMLAttributes } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@/assets/icons';
+import { Loader } from '@/ui-kit/Loader';
 
 import styles from './Button.module.scss';
 
@@ -18,6 +19,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ButtonIcon;
   iconPosition?: IconPosition;
   iconClassName?: string;
+  isLoading?: boolean;
 }
 
 export const Button = ({
@@ -28,14 +30,27 @@ export const Button = ({
   iconPosition = 'right',
   iconClassName,
   type = 'button',
+  isLoading = false,
+  disabled,
   ...props
 }: ButtonProps) => {
   const Icon = icon ? buttonIcons[icon] : null;
-  const hasLeftIcon = Boolean(icon) && iconPosition === 'left';
-  const hasRightIcon = Boolean(icon) && iconPosition === 'right';
+  const hasLeftIcon = Boolean(icon) && iconPosition === 'left' && !isLoading;
+  const hasRightIcon = Boolean(icon) && iconPosition === 'right' && !isLoading;
 
   return (
-    <button type={type} className={clsx(styles.button, styles[variant], className)} {...props}>
+    <button
+      type={type}
+      className={clsx(styles.button, styles[variant], isLoading && styles.loading, className)}
+      disabled={disabled || isLoading}
+      aria-busy={isLoading}
+      {...props}
+    >
+      {isLoading && (
+        <span className={styles.loaderSlot} aria-hidden>
+          <Loader size="sm" />
+        </span>
+      )}
       {hasLeftIcon && Icon && (
         <span className={styles.icon}>
           <Icon className={iconClassName} />

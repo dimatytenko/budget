@@ -7,38 +7,28 @@ import { routes } from '@/constants/routes';
 import styles from './Logo.module.scss';
 
 interface LogoProps {
-  withText?: boolean;
-  text?: string;
+  variantText?: 'desk' | ' mobile' | ' both' | 'none';
+  linkToPurchase?: boolean;
   className?: string;
-  linkToDashboard?: boolean;
 }
 
-export const Logo = ({
-  withText = true,
-  text = 'Worthy',
-  className,
-  linkToDashboard = false,
-}: LogoProps) => {
+export const Logo = ({ variantText = 'none', className, linkToPurchase = false }: LogoProps) => {
   const content = (
     <>
       <LogoIcon className={styles.icon} />
-      {withText && <span className={styles.text}>{text}</span>}
+      <span className={clsx(styles.text, styles[variantText])}>Worthy</span>
     </>
   );
 
-  if (linkToDashboard) {
+  if (linkToPurchase) {
     return (
-      <Link to={routes.dashboard} className={clsx(styles.logo, className)}>
+      <Link to={routes.purchase} className={clsx(styles.logo, className)}>
         {content}
       </Link>
     );
   }
 
-  return (
-    <div className={clsx(styles.logo, className)}>
-      {content}
-    </div>
-  );
+  return <div className={clsx(styles.logo, className)}>{content}</div>;
 };
 
 export type { LogoProps };

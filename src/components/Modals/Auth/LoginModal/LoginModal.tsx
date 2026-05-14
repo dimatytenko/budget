@@ -1,49 +1,53 @@
-import { useState } from 'react';
-
 import worthyCharacter from '@/assets/images/worthy/worthy-hand-up.png';
 import { Button, Input, Modal } from '@/ui-kit';
-import { LockColorIcon } from '@/assets/icons';
 
 import styles from '../Auth.module.scss';
 
-interface RegisterModalProps {
+interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit?: (payload: { email: string; password: string }) => void;
   goToRegister?: () => void;
+  formData: { email: string; password: string };
+  onChangeFormData: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isDisabled: boolean;
+  loading: boolean;
+  error: string | null;
+  onSubmit: () => void;
 }
 
-const LoginModal = ({ isOpen, onClose, onSubmit, goToRegister }: RegisterModalProps) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginModal: React.FC<LoginModalProps> = ({
+  isOpen,
+  onClose,
+  goToRegister,
+  formData,
+  onChangeFormData,
+  isDisabled,
+  loading,
+  error,
+  onSubmit,
+}) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isDisabled || loading) return;
+    onSubmit();
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={styles.shell}>
         <div className={styles.form_column}>
-          <form
-            className={styles.form}
-            onSubmit={(e) => {
-              e.preventDefault();
-              onSubmit?.({ email, password });
-            }}
-            noValidate
-          >
+          <form className={styles.form} onSubmit={handleSubmit}>
             <h2 className={styles.title}>Welcome back!</h2>
-            <p className={styles.subtitle}>
-              Log in or create an account to save your analysis and track your future decisions.
-            </p>
+            <p className={styles.subtitle}>Log in to your existing account.</p>
 
             <div className={styles.fields}>
               <Input
                 label="Email"
                 type="email"
                 name="email"
-                autoComplete="email"
                 placeholder="Enter your email"
-                value={email}
-                onChange={(ev) => setEmail(ev.target.value)}
-                required
+                value={formData.email}
+                onChange={onChangeFormData}
               />
               <Input
                 label="Password"
@@ -51,13 +55,21 @@ const LoginModal = ({ isOpen, onClose, onSubmit, goToRegister }: RegisterModalPr
                 name="password"
                 autoComplete="current-password"
                 placeholder="Enter your password"
-                value={password}
-                onChange={(ev) => setPassword(ev.target.value)}
-                required
+                value={formData.password}
+                onChange={onChangeFormData}
               />
+
+              {error && <p className={styles.error}>{error}</p>}
             </div>
 
-            <Button variant="primary" type="submit" text="Log in" className={styles.login_button} />
+            <Button
+              variant="primary"
+              type="submit"
+              text="Log in"
+              className={styles.login_button}
+              disabled={isDisabled}
+              isLoading={loading}
+            />
           </form>
 
           <div className={styles.divider} aria-hidden>
@@ -74,8 +86,7 @@ const LoginModal = ({ isOpen, onClose, onSubmit, goToRegister }: RegisterModalPr
           </p>
 
           <div className={styles.lock_icon_container}>
-            <LockColorIcon className={styles.lock_icon} />
-            <p className={styles.lock_icon_text}>Your data is secure with us</p>
+            <p className={styles.lock_icon_text}>🔒 Your data is secure with us</p>
           </div>
         </div>
 

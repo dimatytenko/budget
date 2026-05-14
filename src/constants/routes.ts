@@ -1,8 +1,8 @@
 export const routes = {
   onboarding: '/',
   profile: '/profile',
-  dashboard: '/dashboard',
-  items: '/items',
+  purchase: '/purchase',
+  history: '/history',
 
   // ========================================================
 

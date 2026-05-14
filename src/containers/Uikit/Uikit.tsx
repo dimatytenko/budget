@@ -7,7 +7,7 @@ const Uikit = () => {
       <h1 className={styles.title}>UI Kit Buttons</h1>
 
       <div className={styles.row}>
-        <Logo withText={false} />
+        <Logo />
         <Logo />
       </div>
 

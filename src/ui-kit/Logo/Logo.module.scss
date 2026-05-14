@@ -20,6 +20,7 @@
 }
 
 .text {
+  display: block;
   color: $color-brand;
   font-size: 32px;
   font-weight: $font-weight-semibold;
@@ -27,5 +28,25 @@
 
   @include media-down($breakpoint-m) {
     font-size: 24px;
+  }
+
+  &.none {
+    display: none;
+  }
+
+  &.both {
+    display: block;
+  }
+
+  &.desk {
+    @include media-down($breakpoint-m) {
+      display: none;
+    }
+  }
+
+  &.mobile {
+    @include media-up($breakpoint-m) {
+      display: none;
+    }
   }
 }

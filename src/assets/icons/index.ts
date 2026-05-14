@@ -4,7 +4,6 @@ import ArrowLeftIcon from './arrow-left.svg?react';
 import CloseIcon from './close.svg?react';
 import MailIcon from './mail.svg?react';
 import LockIcon from './lock.svg?react';
-import LockColorIcon from './lock-color.svg?react';
 import EyeIcon from './eye.svg?react';
 import EyeOffIcon from './eye-off.svg?react';
 
@@ -15,7 +14,6 @@ export {
   CloseIcon,
   MailIcon,
   LockIcon,
-  LockColorIcon,
   EyeIcon,
   EyeOffIcon,
 };

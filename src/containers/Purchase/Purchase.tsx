@@ -1,9 +1,9 @@
-import Dashboard from '@/components/Dashboard';
+import Purchase from '@/components/Purchase';
 import { useAuthModals } from '@/hooks/auth';
 import LoginContainer from '@/containers/Auth/Login';
 import RegisterContainer from '@/containers/Auth/Register';
 
-const DashboardPage = () => {
+const PurchasePage = () => {
   const {
     isLoginModalOpen,
     openLoginModal,
@@ -14,7 +14,7 @@ const DashboardPage = () => {
   } = useAuthModals();
   return (
     <>
-      <Dashboard openLoginModal={openLoginModal} />
+      <Purchase openLoginModal={openLoginModal} />
       {isLoginModalOpen && (
         <LoginContainer
           isOpen={isLoginModalOpen}
@@ -33,4 +33,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default PurchasePage;

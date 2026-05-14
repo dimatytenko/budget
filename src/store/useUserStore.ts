@@ -1,13 +1,12 @@
 import { create } from 'zustand';
 
-import type { AuthUserInterface } from '@/types/user';
-import type { UserType } from '@/types/user';
+import type { BaseUserInterface } from '@/types/user';
 
 interface UserState {
-  user: UserType;
-  setUser: (rawUser: AuthUserInterface) => void;
+  user: BaseUserInterface | null;
+  setUser: (rawUser: BaseUserInterface) => void;
   clearUser: () => void;
-  updateUser: (partial: Partial<UserType>) => void;
+  updateUser: (partial: Partial<BaseUserInterface>) => void;
   isRefreshing: boolean;
   setIsRefreshing: (value: boolean) => void;
 }
@@ -17,18 +16,20 @@ export const useUserStore = create<UserState>((set) => ({
   setIsRefreshing: (value) => set({ isRefreshing: value }),
   user: null,
   setUser: (rawUser) => {
-    const { _id, avatar, email } = rawUser;
+    const { id, email, name, surname, salary } = rawUser;
 
     set({
       user: {
-        _id,
-        avatar,
+        id,
+        name,
+        surname,
+        salary,
         email,
       },
     });
   },
   clearUser: () => set({ user: null }),
-  updateUser: (partial: Partial<UserType>) =>
+  updateUser: (partial: Partial<BaseUserInterface>) =>
     set((state) => ({
       user: state.user ? { ...state.user, ...partial } : null,
     })),

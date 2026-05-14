@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ pathname }) => {
     <header className={styles.header}>
       <div className={'container'}>
         <div className={styles.content}>
-          <Logo linkToDashboard />
+          <Logo linkToPurchase variantText="desk" />
         </div>
       </div>
     </header>

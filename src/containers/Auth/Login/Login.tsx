@@ -1,4 +1,5 @@
 import LoginModal from '@/components/Modals/Auth/LoginModal';
+import { useLogin } from '@/hooks/auth';
 
 interface LoginProps {
   isOpen: boolean;
@@ -7,7 +8,25 @@ interface LoginProps {
 }
 
 const LoginContainer: React.FC<LoginProps> = ({ isOpen, onClose, goToRegister }) => {
-  return <LoginModal isOpen={isOpen} onClose={onClose} goToRegister={goToRegister} />;
+  const { formData, onChangeFormData, isDisabled, onSubmit, loading, error } = useLogin({
+    onSuccess: () => {
+      onClose();
+    },
+  });
+
+  return (
+    <LoginModal
+      isOpen={isOpen}
+      onClose={onClose}
+      goToRegister={goToRegister}
+      formData={formData}
+      onChangeFormData={onChangeFormData}
+      isDisabled={isDisabled}
+      onSubmit={onSubmit}
+      loading={loading}
+      error={error}
+    />
+  );
 };
 
 export default LoginContainer;

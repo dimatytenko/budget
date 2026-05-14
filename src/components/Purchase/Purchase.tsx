@@ -1,10 +1,10 @@
 import { Button } from '@/ui-kit';
 
-interface DashboardProps {
+interface PurchaseProps {
   openLoginModal: () => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ openLoginModal }) => {
+const Purchase: React.FC<PurchaseProps> = ({ openLoginModal }) => {
   return (
     <div>
       <Button text="Open Login Modal" onClick={openLoginModal} />
@@ -12,4 +12,4 @@ const Dashboard: React.FC<DashboardProps> = ({ openLoginModal }) => {
   );
 };
 
-export default Dashboard;
+export default Purchase;

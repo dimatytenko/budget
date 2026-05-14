@@ -3,10 +3,10 @@
   align-items: center;
   justify-content: center;
   gap: 0px;
-  min-height: 46px;
-  padding: 10px 32px;
-  border-radius: 16px;
-  border: 1.6px solid transparent;
+  min-height: 41px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
   font-family: $font-family-primary;
   font-size: 18px;
   font-weight: $font-weight-semibold;
@@ -16,7 +16,8 @@
     border-color $transition-primary, color $transition-primary;
 
   @include media-down($breakpoint-m) {
-    padding: 10px 24px;
+    font-size: 16px;
+    padding: 10px 16px;
   }
 
   &:disabled {
