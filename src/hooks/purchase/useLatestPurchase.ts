@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { getApiErrorMessage } from '@/lib/api/handleApiError';
 import { purchaseApi } from '@/lib/api/purchase';
 import type { BasePurchaseInterface } from '@/types/purchase';
+import { useUser } from '../user';
 
 const useLatestPurchase = () => {
+  const { user } = useUser();
   const [latestPurchase, setLatestPurchase] = useState<BasePurchaseInterface | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -24,8 +26,9 @@ const useLatestPurchase = () => {
   };
 
   useEffect(() => {
+    if (!user) return;
     fetchLatestPurchase();
-  }, []);
+  }, [user]);
 
   return {
     latestPurchase,
