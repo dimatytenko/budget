@@ -12,6 +12,7 @@ import DollarIcon from './dollar.svg?react';
 import ChevronDownIcon from './chevron-down.svg?react';
 import CheckIcon from './check.svg?react';
 import UploadIcon from './upload.svg?react';
+import EditIcon from './edit.svg?react';
 
 export {
   LogoIcon,
@@ -28,4 +29,5 @@ export {
   ChevronDownIcon,
   CheckIcon,
   UploadIcon,
+  EditIcon,
 };

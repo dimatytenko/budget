@@ -9,12 +9,7 @@ import {
   StepProgress,
 } from '@/ui-kit';
 
-const DECISION_TIMER_OPTIONS = [
-  { value: '24h', label: '24 hours (recommended)' },
-  { value: '12h', label: '12 hours' },
-  { value: '48h', label: '48 hours' },
-  { value: '72h', label: '72 hours' },
-];
+import { DECISION_TIMER_OPTIONS, DEFAULT_DECISION_TIMER } from '@/constants/purchase';
 
 const Uikit = () => {
   return (
@@ -48,8 +43,8 @@ const Uikit = () => {
           <QuantityStepper label="Quantity" defaultValue={1} min={1} />
           <Select
             label="Decision timer"
-            options={DECISION_TIMER_OPTIONS}
-            defaultValue="24h"
+            options={[...DECISION_TIMER_OPTIONS]}
+            defaultValue={DEFAULT_DECISION_TIMER}
           />
           <ImageUpload label="Purchase image" />
         </div>

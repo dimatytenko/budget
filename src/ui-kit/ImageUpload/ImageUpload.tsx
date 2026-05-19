@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { DragEvent } from 'react';
 
 import { CloseIcon, UploadIcon } from '@/assets/icons';
@@ -45,7 +45,6 @@ const ImageUpload = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [internalFile, setInternalFile] = useState<File | null>(defaultValue);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
 
@@ -54,19 +53,18 @@ const ImageUpload = ({
   const hintText = hint ?? `PNG, JPG up to ${maxSizeMB}MB`;
   const maxSizeBytes = maxSizeMB * 1024 * 1024;
 
-  useEffect(() => {
-    if (!file) {
-      setPreviewUrl(null);
-      return;
-    }
+  const previewUrl = useMemo(() => {
+    if (!file) return null;
+    return URL.createObjectURL(file);
+  }, [file]);
 
-    const url = URL.createObjectURL(file);
-    setPreviewUrl(url);
+  useEffect(() => {
+    if (!previewUrl) return;
 
     return () => {
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(previewUrl);
     };
-  }, [file]);
+  }, [previewUrl]);
 
   const validateFile = (nextFile: File): string | null => {
     if (!ACCEPTED_TYPES.includes(nextFile.type)) {

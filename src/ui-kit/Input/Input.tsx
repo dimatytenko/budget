@@ -6,7 +6,7 @@ import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from '@/assets/icons';
 
 import styles from './Input.module.scss';
 
-type InputType = 'text' | 'email' | 'password';
+type InputType = 'text' | 'email' | 'password' | 'number';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -15,6 +15,7 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>
   /** Helper text under the field (e.g. password rules). */
   hint?: string;
   leadingIcon?: 'email' | 'password';
+  prefix?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -25,6 +26,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       className,
       id: idProp,
       leadingIcon,
+      prefix,
       error,
       hint,
       'aria-invalid': ariaInvalid,
@@ -40,19 +42,20 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const [showPassword, setShowPassword] = useState(false);
 
     const isPassword = type === 'password';
-    const hasLeading = type === 'email' || type === 'password';
+    const hasLeading = type === 'email' || type === 'password' || Boolean(prefix);
     const inputType: InputHTMLAttributes<HTMLInputElement>['type'] = isPassword
       ? showPassword
         ? 'text'
         : 'password'
       : type;
 
-    const leading =
-      leadingIcon === 'email' ? (
-        <MailIcon aria-hidden className={styles.leading_icon} />
-      ) : leadingIcon === 'password' ? (
-        <LockIcon aria-hidden className={styles.leading_icon} />
-      ) : null;
+    const leading = prefix ? (
+      <span className={styles.prefix}>{prefix}</span>
+    ) : leadingIcon === 'email' ? (
+      <MailIcon aria-hidden className={styles.leading_icon} />
+    ) : leadingIcon === 'password' ? (
+      <LockIcon aria-hidden className={styles.leading_icon} />
+    ) : null;
 
     const describedByParts = [ariaDescribedBy, hint ? hintId : null, error ? errorId : null].filter(
       Boolean,

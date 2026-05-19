@@ -10,11 +10,9 @@ export const apiInstance: AxiosInstance = axios.create({
   },
 });
 
+/** For multipart uploads — Content-Type with boundary is set automatically per request. */
 export const apiInstanceImages: AxiosInstance = axios.create({
   baseURL: config.apiBaseUrl,
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
 });
 
 export const apiToken = {
