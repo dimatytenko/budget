@@ -1,7 +1,7 @@
 import { Logo, Button, StepProgress } from '@/ui-kit';
 
 import styles from './Onboarding.module.scss';
-import type { OnboardingSlide } from '@/hooks/useOnboarding';
+import type { OnboardingSlide } from '@/hooks/onboarding/useOnboarding';
 
 interface OnboardingProps {
   currentStep: number;

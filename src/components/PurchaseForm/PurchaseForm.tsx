@@ -1,6 +1,6 @@
 import { DollarIcon, EditIcon } from '@/assets/icons';
 import { DECISION_TIMER_OPTIONS, type DecisionTimer } from '@/constants/purchase';
-import type { PurchaseFormData } from '@/hooks/usePurchase';
+import type { PurchaseFormData } from '@/hooks/purchase/usePurchase';
 import { Button, ErrorMessage, ImageUpload, Input, QuantityStepper, Select } from '@/ui-kit';
 
 import styles from './PurchaseForm.module.scss';

@@ -1,6 +1,7 @@
 import Purchase from '@/components/Purchase';
 import { useAuthModals } from '@/hooks/auth';
-import usePurchase from '@/hooks/usePurchase';
+import usePurchase from '@/hooks/purchase/usePurchase';
+import useLatestPurchase from '@/hooks/purchase/useLatestPurchase';
 import LoginContainer from '@/containers/Auth/Login';
 import RegisterContainer from '@/containers/Auth/Register';
 
@@ -26,9 +27,24 @@ const PurchasePage = () => {
     onAnalyze,
   } = usePurchase({ onRequireLogin: openLoginModal });
 
+  const {
+    latestPurchase,
+    isLoading: isLatestLoading,
+    error: latestError,
+    fetchLatestPurchase: refetchLatestPurchase,
+  } = useLatestPurchase();
+
+  const handleAnalyze = async () => {
+    await onAnalyze();
+    await refetchLatestPurchase();
+  };
+
   return (
     <>
       <Purchase
+        latestPurchase={latestPurchase}
+        isLatestLoading={isLatestLoading}
+        latestError={latestError}
         formData={formData}
         isDisabled={isDisabled}
         submitError={submitError}
@@ -37,7 +53,7 @@ const PurchasePage = () => {
         onChangeQuantity={onChangeQuantity}
         onChangeDecisionTimer={onChangeDecisionTimer}
         onChangeImage={onChangeImage}
-        onAnalyze={onAnalyze}
+        onAnalyze={handleAnalyze}
       />
       {isLoginModalOpen && (
         <LoginContainer

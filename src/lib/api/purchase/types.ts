@@ -1,4 +1,9 @@
-import type { DecisionTimer, PurchaseSortField, PurchaseStatus } from '@/constants/purchase';
+import type {
+  DecisionTimer,
+  FinalPurchaseStatus,
+  PurchaseSortField,
+  PurchaseStatus,
+} from '@/constants/purchase';
 import type {
   BaseResponseInterface,
   PaginationMeta,
@@ -34,3 +39,15 @@ export type ListPurchasesResponse = BaseResponseInterface<{
   purchases: BasePurchaseInterface[];
   pagination: PaginationMeta;
 }>;
+
+export type PurchaseResponse = BaseResponseInterface<{
+  purchase: BasePurchaseInterface;
+}>;
+
+export interface UpdatePurchaseStatusBody {
+  status: FinalPurchaseStatus;
+}
+
+export type ExtendPurchaseDecisionBody =
+  | { decisionTimer: DecisionTimer; additionalHours?: never }
+  | { additionalHours: number; decisionTimer?: never };

@@ -1,5 +1,5 @@
 import Onboarding from '@/components/Onboarding';
-import useOnboarding from '@/hooks/useOnboarding';
+import useOnboarding from '@/hooks/onboarding/useOnboarding';
 
 const OnboardingPage = () => {
   const {

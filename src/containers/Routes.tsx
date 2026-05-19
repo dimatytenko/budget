@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
 import { useGetUser } from '@/hooks/user';
-import { usePassedOnboarding } from '@/hooks/usePassedOnboarding';
+import { usePassedOnboarding } from '@/hooks/onboarding/usePassedOnboarding';
 import { routes } from '@/constants/routes';
 
 export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {

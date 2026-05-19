@@ -1,4 +1,19 @@
 .page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
   max-width: 720px;
+}
+
+.latest_hint {
+  margin: 0;
+  font-size: 14px;
+  color: $color-font-primary;
+}
+
+.latest_error {
+  margin: 0;
+  font-size: 14px;
+  color: $color-alert;
 }

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { routes } from '@/constants/routes';
-import { usePassedOnboarding } from '@/hooks/usePassedOnboarding';
+import { usePassedOnboarding } from '@/hooks/onboarding/usePassedOnboarding';
 import worthyCheckImg from '@/assets/images/worthy/worthy-check.png';
 import worthyHandUpImg from '@/assets/images/worthy/worthy-hand-up.png';
 import worthyLookImg from '@/assets/images/worthy/worthy-look.png';
