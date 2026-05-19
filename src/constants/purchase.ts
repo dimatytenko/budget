@@ -4,6 +4,9 @@ export type DecisionTimer = (typeof DECISION_TIMERS)[number];
 export const PURCHASE_STATUSES = ['pending', 'bought', 'rejected'] as const;
 export type PurchaseStatus = (typeof PURCHASE_STATUSES)[number];
 
+export const PURCHASE_SORT_FIELDS = ['createdAt', 'decisionEndsAt'] as const;
+export type PurchaseSortField = (typeof PURCHASE_SORT_FIELDS)[number];
+
 export const DEFAULT_DECISION_TIMER: DecisionTimer = '24h';
 
 export const DECISION_TIMER_OPTIONS: { value: DecisionTimer; label: string }[] = [

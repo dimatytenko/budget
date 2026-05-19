@@ -5,7 +5,21 @@ export interface BaseResponseInterface<T> {
   data: T;
 }
 
-// export interface PaginationParamsInterface {
-//   page?: number;
-//   limit?: number;
-// }
+export interface PaginationMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+export interface PaginationParams {
+  page?: number;
+  limit?: number;
+}
+
+export type SortOrder = 'asc' | 'desc';
+
+export interface SortParams<TSortField extends string = string> {
+  sort?: TSortField;
+  order?: SortOrder;
+}
