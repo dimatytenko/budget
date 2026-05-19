@@ -1,0 +1,155 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-size: 12px;
+  color: $color-font-tertiary;
+  font-weight: $font-weight-medium;
+}
+
+.control {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  background: $color-light;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color $transition-primary;
+
+  &:focus-visible {
+    outline: none;
+    border-color: $color-brand;
+  }
+
+  &.is_open:not(.has_error) {
+    border-color: $color-brand;
+  }
+
+  &.has_error {
+    border-color: $color-alert;
+
+    &:focus-visible,
+    &.is_open {
+      border-color: $color-alert;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+  line-height: 1.25;
+  color: $color-font-tertiary;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.is_placeholder .value {
+  color: $color-disabled;
+}
+
+.chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: $color-tertiary;
+  transition: transform $transition-primary;
+}
+
+.chevron_open {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 4px);
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 4px 0;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  background: $color-light;
+  box-shadow: 0 4px 16px rgba($color-dark, 0.08);
+  list-style: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+  line-height: 1.25;
+  color: $color-font-tertiary;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color $transition-primary;
+
+  &:hover {
+    background-color: rgba($color-brand, 0.04);
+  }
+}
+
+.option_selected {
+  background-color: $color-accent;
+
+  &:hover {
+    background-color: $color-accent;
+  }
+}
+
+.option_label {
+  flex: 1;
+  min-width: 0;
+}
+
+.check_icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: $color-brand;
+}
+
+.error {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  line-height: 1.35;
+  color: $color-alert;
+}

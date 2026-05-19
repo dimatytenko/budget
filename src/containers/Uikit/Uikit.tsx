@@ -1,5 +1,20 @@
 import styles from './Uikit.module.scss';
-import { Button, Input, Logo, StepProgress } from '@/ui-kit';
+import {
+  Button,
+  ImageUpload,
+  Input,
+  Logo,
+  QuantityStepper,
+  Select,
+  StepProgress,
+} from '@/ui-kit';
+
+const DECISION_TIMER_OPTIONS = [
+  { value: '24h', label: '24 hours (recommended)' },
+  { value: '12h', label: '12 hours' },
+  { value: '48h', label: '48 hours' },
+  { value: '72h', label: '72 hours' },
+];
 
 const Uikit = () => {
   return (
@@ -30,6 +45,13 @@ const Uikit = () => {
             placeholder="Enter your password"
             autoComplete="current-password"
           />
+          <QuantityStepper label="Quantity" defaultValue={1} min={1} />
+          <Select
+            label="Decision timer"
+            options={DECISION_TIMER_OPTIONS}
+            defaultValue="24h"
+          />
+          <ImageUpload label="Purchase image" />
         </div>
       </section>
 

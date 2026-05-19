@@ -9,6 +9,9 @@ import EyeOffIcon from './eye-off.svg?react';
 import AccountIcon from './account.svg?react';
 import LogoutIcon from './logout.svg?react';
 import DollarIcon from './dollar.svg?react';
+import ChevronDownIcon from './chevron-down.svg?react';
+import CheckIcon from './check.svg?react';
+import UploadIcon from './upload.svg?react';
 
 export {
   LogoIcon,
@@ -22,4 +25,7 @@ export {
   AccountIcon,
   LogoutIcon,
   DollarIcon,
+  ChevronDownIcon,
+  CheckIcon,
+  UploadIcon,
 };

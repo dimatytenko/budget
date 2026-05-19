@@ -1,0 +1,92 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-size: 12px;
+  color: $color-font-tertiary;
+  font-weight: $font-weight-medium;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.input_frame {
+  border-radius: 8px;
+  border: 1px solid $color-border;
+
+  &:focus-within:not(.has_error) {
+    border-color: $color-brand;
+  }
+
+  &.has_error {
+    border-color: $color-alert;
+
+    &:focus-within {
+      border-color: $color-alert;
+    }
+  }
+}
+
+.stepper_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 10px 14px;
+}
+
+.step_button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  padding: 2px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 20px;
+  font-weight: $font-weight-regular;
+  line-height: 1;
+  color: $color-font-tertiary;
+  cursor: pointer;
+  transition: color $transition-primary, background-color $transition-primary;
+
+  &:hover:not(:disabled) {
+    color: $color-brand;
+    background-color: rgba($color-brand, 0.06);
+  }
+
+  &:disabled {
+    color: $color-disabled;
+    cursor: not-allowed;
+  }
+}
+
+.value {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+  line-height: 1.25;
+  text-align: center;
+  color: $color-font-tertiary;
+  user-select: none;
+}
+
+.error {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  line-height: 1.35;
+  color: $color-alert;
+}
