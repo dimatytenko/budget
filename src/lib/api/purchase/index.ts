@@ -20,17 +20,12 @@ export const purchaseApi = {
     }),
 
   getLatest: () => apiInstance.get<PurchaseResponse>('/purchases/latest'),
-
   getById: (id: string) => apiInstance.get<PurchaseResponse>(`/purchases/${id}`),
-
   create: (data: PurchaseFormData) =>
     apiInstanceImages.post<CreatePurchaseResponse>('/purchases', buildPurchaseFormData(data)),
-
   remove: (id: string) => apiInstance.delete<PurchaseResponse>(`/purchases/${id}`),
-
   updateStatus: (id: string, body: UpdatePurchaseStatusBody) =>
     apiInstance.patch<PurchaseResponse>(`/purchases/${id}/status`, body),
-
   extendDecision: (id: string, body: ExtendPurchaseDecisionBody) =>
     apiInstance.patch<PurchaseResponse>(`/purchases/${id}/extend-decision`, body),
 };

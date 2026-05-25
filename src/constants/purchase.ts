@@ -10,6 +10,15 @@ export const PURCHASE_STATUS_LABELS: Record<PurchaseStatus, string> = {
   rejected: 'Rejected',
 };
 
+export type PurchaseFilterValue = 'all' | PurchaseStatus;
+
+export const PURCHASE_FILTER_OPTIONS: { value: PurchaseFilterValue; label: string }[] = [
+  { value: 'all', label: 'View all' },
+  { value: 'pending', label: PURCHASE_STATUS_LABELS.pending },
+  { value: 'rejected', label: PURCHASE_STATUS_LABELS.rejected },
+  { value: 'bought', label: PURCHASE_STATUS_LABELS.bought },
+];
+
 /** Statuses allowed when finalizing a pending purchase */
 export const FINAL_PURCHASE_STATUSES = ['bought', 'rejected'] as const;
 export type FinalPurchaseStatus = (typeof FINAL_PURCHASE_STATUSES)[number];

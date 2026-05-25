@@ -5,6 +5,13 @@
   width: 100%;
 }
 
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
 .section_title {
   margin: 0;
   font-size: 12px;

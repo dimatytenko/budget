@@ -1,0 +1,52 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  padding: 2px;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  background-color: #f2f2f2;
+  overflow-x: auto;
+
+  @include media-down($breakpoint-s) {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.tab {
+  flex: 1 0 auto;
+  min-height: 36px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: $color-grey;
+  font-family: $font-family-primary;
+  font-size: 13px;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color $transition-primary, color $transition-primary,
+    box-shadow $transition-primary;
+
+  @include media-down($breakpoint-s) {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  &:hover:not(.tab_active) {
+    color: $color-font-tertiary;
+  }
+}
+
+.tab_active {
+  background-color: $color-light;
+  color: $color-font-tertiary;
+  font-weight: $font-weight-semibold;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+}

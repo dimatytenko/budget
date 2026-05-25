@@ -16,12 +16,18 @@ import {
   Logo,
   Pagination,
   QuantityStepper,
+  SegmentedFilter,
   Select,
   StatCard,
   StepProgress,
 } from '@/ui-kit';
 
-import { DECISION_TIMER_OPTIONS, DEFAULT_DECISION_TIMER } from '@/constants/purchase';
+import {
+  DECISION_TIMER_OPTIONS,
+  DEFAULT_DECISION_TIMER,
+  PURCHASE_FILTER_OPTIONS,
+  type PurchaseFilterValue,
+} from '@/constants/purchase';
 import { MOCK_PURCHASES } from '@/constants/mockPurchases';
 import { STAT_TOOLTIPS } from '@/constants/statistics';
 import PurchaseCard from '@/components/PurchaseCard';
@@ -33,6 +39,7 @@ import type { BasePurchaseInterface } from '@/types/purchase';
 const Uikit = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [purchaseCards, setPurchaseCards] = useState<BasePurchaseInterface[]>(MOCK_PURCHASES);
+  const [filter, setFilter] = useState<PurchaseFilterValue>('all');
   const totalPages = 10;
 
   const handlePurchaseStatusChange = (id: string, status: FinalPurchaseStatus) => {
@@ -103,6 +110,16 @@ const Uikit = () => {
             icon={<SadIcon aria-hidden />}
           />
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.subtitle}>Filter</h2>
+        <SegmentedFilter
+          value={filter}
+          options={PURCHASE_FILTER_OPTIONS}
+          onChange={setFilter}
+          ariaLabel="Filter purchases"
+        />
       </section>
 
       <section className={styles.section}>

@@ -12,6 +12,7 @@ import ErrorMessage from './ErrorMessage';
 import { StatCard } from './StatCard';
 import { Tooltip } from './Tooltip';
 import { Pagination } from './Pagination';
+import { SegmentedFilter } from './SegmentedFilter';
 
 export {
   Button,
@@ -29,6 +30,7 @@ export {
   StatCard,
   Tooltip,
   Pagination,
+  SegmentedFilter,
 };
 export type { ButtonProps, ButtonVariant, IconPosition } from './Button';
 export type { InputProps, InputType } from './Input';
@@ -40,3 +42,4 @@ export type { StepProgressProps } from './StepProgress';
 export type { StatCardProps, StatCardVariant } from './StatCard';
 export type { TooltipProps } from './Tooltip';
 export type { PaginationProps } from './Pagination';
+export type { SegmentedFilterOption, SegmentedFilterProps } from './SegmentedFilter';
