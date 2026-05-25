@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   BriefcaseIcon,
   ChartUpIcon,
@@ -12,6 +14,7 @@ import {
   ImageUpload,
   Input,
   Logo,
+  Pagination,
   QuantityStepper,
   Select,
   StatCard,
@@ -22,6 +25,9 @@ import { DECISION_TIMER_OPTIONS, DEFAULT_DECISION_TIMER } from '@/constants/purc
 import { STAT_TOOLTIPS } from '@/constants/statistics';
 
 const Uikit = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
   return (
     <div className={styles.page_wrapper}>
       <h1 className={styles.title}>UI Kit Buttons</h1>
@@ -84,6 +90,15 @@ const Uikit = () => {
             icon={<SadIcon aria-hidden />}
           />
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.subtitle}>Pagination</h2>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </section>
 
       <section className={styles.section}>

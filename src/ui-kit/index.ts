@@ -11,6 +11,7 @@ import Modal from './Modal';
 import ErrorMessage from './ErrorMessage';
 import { StatCard } from './StatCard';
 import { Tooltip } from './Tooltip';
+import { Pagination } from './Pagination';
 
 export {
   Button,
@@ -27,6 +28,7 @@ export {
   ErrorMessage,
   StatCard,
   Tooltip,
+  Pagination,
 };
 export type { ButtonProps, ButtonVariant, IconPosition } from './Button';
 export type { InputProps, InputType } from './Input';
@@ -37,3 +39,4 @@ export type { LogoProps } from './Logo';
 export type { StepProgressProps } from './StepProgress';
 export type { StatCardProps, StatCardVariant } from './StatCard';
 export type { TooltipProps } from './Tooltip';
+export type { PaginationProps } from './Pagination';

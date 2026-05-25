@@ -1,0 +1,128 @@
+.pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+
+  @include media-down($breakpoint-s) {
+    justify-content: space-between;
+    width: 100%;
+    gap: 6px;
+  }
+}
+
+.pages {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include media-down($breakpoint-s) {
+    display: none;
+  }
+}
+
+.mobile_status {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 72px;
+  margin: 0;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  color: $color-brand;
+  white-space: nowrap;
+
+  @include media-down($breakpoint-s) {
+    display: inline-flex;
+    flex: 1;
+  }
+}
+
+.mobile_status_value {
+  font-weight: $font-weight-semibold;
+}
+
+.mobile_status_separator {
+  color: $color-disabled;
+}
+
+.nav_button,
+.page_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid $color-brand;
+  border-radius: 10px;
+  background-color: $color-light;
+  color: $color-brand;
+  font-family: $font-family-primary;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color $transition-primary, border-color $transition-primary,
+    color $transition-primary, opacity $transition-primary;
+
+  @include media-down($breakpoint-s) {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: rgba($color-brand, 0.04);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.page_button {
+  border-color: $color-border;
+  color: $color-disabled;
+
+  &:hover:not(:disabled) {
+    border-color: $color-brand;
+    color: $color-brand;
+  }
+}
+
+.page_active {
+  border-color: $color-brand;
+  background-color: #eef6ef;
+  color: $color-brand;
+}
+
+.nav_icon {
+  width: 18px;
+  height: 18px;
+
+  @include media-down($breakpoint-s) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: $color-disabled;
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+}
