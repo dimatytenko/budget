@@ -4,6 +4,12 @@ export type DecisionTimer = (typeof DECISION_TIMERS)[number];
 export const PURCHASE_STATUSES = ['pending', 'bought', 'rejected'] as const;
 export type PurchaseStatus = (typeof PURCHASE_STATUSES)[number];
 
+export const PURCHASE_STATUS_LABELS: Record<PurchaseStatus, string> = {
+  pending: 'Pending',
+  bought: 'Bought',
+  rejected: 'Rejected',
+};
+
 /** Statuses allowed when finalizing a pending purchase */
 export const FINAL_PURCHASE_STATUSES = ['bought', 'rejected'] as const;
 export type FinalPurchaseStatus = (typeof FINAL_PURCHASE_STATUSES)[number];

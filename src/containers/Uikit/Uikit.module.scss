@@ -49,6 +49,21 @@
   }
 }
 
+.purchase_cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 720px;
+}
+
+.status_select_row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
 .inputs_column {
   display: flex;
   flex-direction: column;

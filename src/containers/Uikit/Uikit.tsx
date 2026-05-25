@@ -22,11 +22,24 @@ import {
 } from '@/ui-kit';
 
 import { DECISION_TIMER_OPTIONS, DEFAULT_DECISION_TIMER } from '@/constants/purchase';
+import { MOCK_PURCHASES } from '@/constants/mockPurchases';
 import { STAT_TOOLTIPS } from '@/constants/statistics';
+import PurchaseCard from '@/components/PurchaseCard';
+import PurchaseStatusSelect from '@/components/PurchaseStatusSelect';
+import type { FinalPurchaseStatus } from '@/constants/purchase';
+
+import type { BasePurchaseInterface } from '@/types/purchase';
 
 const Uikit = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [purchaseCards, setPurchaseCards] = useState<BasePurchaseInterface[]>(MOCK_PURCHASES);
   const totalPages = 10;
+
+  const handlePurchaseStatusChange = (id: string, status: FinalPurchaseStatus) => {
+    setPurchaseCards((prev) =>
+      prev.map((purchase) => (purchase.id === id ? { ...purchase, status } : purchase)),
+    );
+  };
 
   return (
     <div className={styles.page_wrapper}>
@@ -89,6 +102,29 @@ const Uikit = () => {
             infoTooltip={STAT_TOOLTIPS.bought}
             icon={<SadIcon aria-hidden />}
           />
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.subtitle}>Status select</h2>
+        <div className={styles.status_select_row}>
+          <PurchaseStatusSelect status="pending" onStatusChange={() => undefined} />
+          <PurchaseStatusSelect status="rejected" />
+          <PurchaseStatusSelect status="bought" />
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.subtitle}>Purchase card</h2>
+        <div className={styles.purchase_cards}>
+          {purchaseCards.map((purchase) => (
+            <PurchaseCard
+              key={purchase.id}
+              purchase={purchase}
+              onDelete={() => undefined}
+              onStatusChange={handlePurchaseStatusChange}
+            />
+          ))}
         </div>
       </section>
 

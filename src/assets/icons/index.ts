@@ -22,6 +22,9 @@ import InfoIcon from './info.svg?react';
 import BriefcaseIcon from './briefcase.svg?react';
 import SmileIcon from './smile.svg?react';
 import SadIcon from './sad.svg?react';
+import TrashIcon from './trash.svg?react';
+import CalendarIcon from './calendar.svg?react';
+import ExternalLinkIcon from './external-link.svg?react';
 
 export {
   LogoIcon,
@@ -48,4 +51,7 @@ export {
   BriefcaseIcon,
   SmileIcon,
   SadIcon,
+  TrashIcon,
+  CalendarIcon,
+  ExternalLinkIcon,
 };
