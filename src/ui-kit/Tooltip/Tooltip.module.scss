@@ -1,0 +1,52 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.tooltip {
+  z-index: 1000;
+  max-width: 200px;
+  padding: 10px 12px;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  background-color: $color-light;
+  color: $color-quaternary;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+}
+
+.content {
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.arrow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  background-color: $color-light;
+  border: 1px solid $color-border;
+}
+
+.arrow[data-side='top'] {
+  border-top: none;
+  border-left: none;
+}
+
+.arrow[data-side='bottom'] {
+  border-bottom: none;
+  border-right: none;
+}
+
+.arrow[data-side='left'] {
+  border-bottom: none;
+  border-left: none;
+}
+
+.arrow[data-side='right'] {
+  border-top: none;
+  border-right: none;
+}

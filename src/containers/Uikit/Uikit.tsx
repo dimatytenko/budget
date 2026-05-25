@@ -19,6 +19,7 @@ import {
 } from '@/ui-kit';
 
 import { DECISION_TIMER_OPTIONS, DEFAULT_DECISION_TIMER } from '@/constants/purchase';
+import { STAT_TOOLTIPS } from '@/constants/statistics';
 
 const Uikit = () => {
   return (
@@ -33,47 +34,53 @@ const Uikit = () => {
       <StepProgress current={1} total={4} />
 
       <section className={styles.section}>
-        <h2 className={styles.subtitle}>Statistics</h2>
+        <h2 className={styles.subtitle}>Overview</h2>
         <div className={styles.stats_grid}>
           <StatCard
             label="Total saved"
             value="150,68"
             unit="usd"
             variant="saved"
+            infoTooltip={STAT_TOOLTIPS.totalSaved}
             icon={<DollarIcon aria-hidden />}
           />
           <StatCard
             label="Work hours"
-            value="85h 20m"
+            value="--"
             variant="workHours"
+            infoTooltip={STAT_TOOLTIPS.workHours}
             icon={<BriefcaseIcon aria-hidden />}
           />
           <StatCard
             label="Annual return"
-            value="300"
+            value="--"
             unit="usd"
             variant="annualReturn"
+            infoTooltip={STAT_TOOLTIPS.annualReturn}
             icon={<ChartUpIcon aria-hidden />}
           />
           <StatCard
             label="Rejected"
-            value="2"
+            value="--"
             unit="purchases"
             variant="rejected"
+            infoTooltip={STAT_TOOLTIPS.rejected}
             icon={<SmileIcon aria-hidden />}
           />
           <StatCard
             label="Pending"
-            value="1"
+            value="--"
             unit="purchases"
             variant="pending"
+            infoTooltip={STAT_TOOLTIPS.pending}
             icon={<ClockIcon aria-hidden />}
           />
           <StatCard
             label="Bought"
-            value="1"
+            value="--"
             unit="purchases"
             variant="bought"
+            infoTooltip={STAT_TOOLTIPS.bought}
             icon={<SadIcon aria-hidden />}
           />
         </div>

@@ -10,6 +10,7 @@ import ButtonClose from './ButtonClose';
 import Modal from './Modal';
 import ErrorMessage from './ErrorMessage';
 import { StatCard } from './StatCard';
+import { Tooltip } from './Tooltip';
 
 export {
   Button,
@@ -25,6 +26,7 @@ export {
   Modal,
   ErrorMessage,
   StatCard,
+  Tooltip,
 };
 export type { ButtonProps, ButtonVariant, IconPosition } from './Button';
 export type { InputProps, InputType } from './Input';
@@ -34,3 +36,4 @@ export type { ImageUploadProps } from './ImageUpload';
 export type { LogoProps } from './Logo';
 export type { StepProgressProps } from './StepProgress';
 export type { StatCardProps, StatCardVariant } from './StatCard';
+export type { TooltipProps } from './Tooltip';

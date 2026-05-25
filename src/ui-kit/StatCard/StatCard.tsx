@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import type { ReactNode } from 'react';
 
 import { InfoIcon } from '@/assets/icons';
+import { Tooltip } from '@/ui-kit/Tooltip';
 
 import styles from './StatCard.module.scss';
 
@@ -20,6 +21,7 @@ interface StatCardProps {
   icon: ReactNode;
   variant: StatCardVariant;
   showInfo?: boolean;
+  infoTooltip?: ReactNode;
   className?: string;
 }
 
@@ -30,6 +32,7 @@ export const StatCard = ({
   icon,
   variant,
   showInfo = true,
+  infoTooltip,
   className,
 }: StatCardProps) => {
   return (
@@ -37,10 +40,20 @@ export const StatCard = ({
       <div className={styles.content}>
         <div className={styles.label_row}>
           <span className={styles.label}>{label}</span>
-          {showInfo ? <InfoIcon aria-hidden className={styles.info_icon} /> : null}
+          {showInfo ? (
+            infoTooltip ? (
+              <Tooltip content={infoTooltip}>
+                <button type="button" className={styles.info_button} aria-label={`${label} info`}>
+                  <InfoIcon aria-hidden className={styles.info_icon} />
+                </button>
+              </Tooltip>
+            ) : (
+              <InfoIcon aria-hidden className={styles.info_icon} />
+            )
+          ) : null}
         </div>
 
-        <p className={styles.value}>{value}</p>
+        <p className={clsx(styles.value, value === '--' && styles.valuePlaceholder)}>{value}</p>
 
         {unit ? <span className={styles.unit}>{unit}</span> : null}
       </div>
