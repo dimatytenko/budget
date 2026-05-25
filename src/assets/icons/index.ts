@@ -13,6 +13,11 @@ import ChevronDownIcon from './chevron-down.svg?react';
 import CheckIcon from './check.svg?react';
 import UploadIcon from './upload.svg?react';
 import EditIcon from './edit.svg?react';
+import ClockIcon from './clock.svg?react';
+import SearchIcon from './search.svg?react';
+import ChartUpIcon from './chart-up.svg?react';
+import PhoneIcon from './phone.svg?react';
+import PurchaseTagIcon from './purchase-tag.svg?react';
 
 export {
   LogoIcon,
@@ -30,4 +35,9 @@ export {
   CheckIcon,
   UploadIcon,
   EditIcon,
+  ClockIcon,
+  SearchIcon,
+  ChartUpIcon,
+  PhoneIcon,
+  PurchaseTagIcon,
 };

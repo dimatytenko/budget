@@ -1,19 +1,18 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   width: 100%;
-  max-width: 720px;
 }
 
-.latest_hint {
-  margin: 0;
-  font-size: 14px;
-  color: $color-font-primary;
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 24px;
+  align-items: start;
+
+  @include media-down($breakpoint-l) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.latest_error {
-  margin: 0;
-  font-size: 14px;
-  color: $color-alert;
+.form_column {
+  min-width: 0;
 }

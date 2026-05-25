@@ -4,14 +4,15 @@ import { NavLink } from 'react-router-dom';
 import { AccountIcon, LogoutIcon } from '@/assets/icons';
 import styles from './Header.module.scss';
 import { routes } from '@/constants/routes';
-import { Logo } from '@/ui-kit';
+import { Button, Logo } from '@/ui-kit';
 
 interface HeaderProps {
   isAuth: boolean;
+  onLogin: () => void;
   onLogout: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ isAuth, onLogout }) => {
+const Header: React.FC<HeaderProps> = ({ isAuth, onLogin, onLogout }) => {
   return (
     <header className={styles.header}>
       <div className={'container'}>
@@ -33,27 +34,36 @@ const Header: React.FC<HeaderProps> = ({ isAuth, onLogout }) => {
               </NavLink>
             )}
           </nav>
-          {isAuth && (
-            <div className={styles.actions}>
-              <NavLink
-                to={routes.profile}
-                className={({ isActive }) =>
-                  clsx(styles.iconButton, isActive && styles.iconButtonActive)
-                }
-                aria-label="Profile"
-              >
-                <AccountIcon className={styles.icon} />
-              </NavLink>
-              <button
-                type="button"
-                className={styles.iconButton}
-                aria-label="Log out"
-                onClick={onLogout}
-              >
-                <LogoutIcon className={styles.icon} />
-              </button>
-            </div>
-          )}
+          <div className={styles.actions}>
+            {isAuth ? (
+              <>
+                <NavLink
+                  to={routes.profile}
+                  className={({ isActive }) =>
+                    clsx(styles.iconButton, isActive && styles.iconButtonActive)
+                  }
+                  aria-label="Profile"
+                >
+                  <AccountIcon className={styles.icon} />
+                </NavLink>
+                <button
+                  type="button"
+                  className={styles.iconButton}
+                  aria-label="Log out"
+                  onClick={onLogout}
+                >
+                  <LogoutIcon className={styles.icon} />
+                </button>
+              </>
+            ) : (
+              <Button
+                text="Log in"
+                variant="secondary"
+                className={styles.loginButton}
+                onClick={onLogin}
+              />
+            )}
+          </div>
         </div>
       </div>
     </header>

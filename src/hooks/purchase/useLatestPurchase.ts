@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import { getApiErrorMessage } from '@/lib/api/handleApiError';
@@ -19,6 +20,11 @@ const useLatestPurchase = () => {
       const { data } = await purchaseApi.getLatest();
       setLatestPurchase(data.data.purchase);
     } catch (err) {
+      if (axios.isAxiosError(err) && err.response?.status === 404) {
+        setLatestPurchase(null);
+        return;
+      }
+
       setError(getApiErrorMessage(err));
     } finally {
       setIsLoading(false);
@@ -26,7 +32,11 @@ const useLatestPurchase = () => {
   };
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      setLatestPurchase(null);
+      return;
+    }
+
     fetchLatestPurchase();
   }, [user]);
 

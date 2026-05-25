@@ -1,19 +1,10 @@
 import Purchase from '@/components/Purchase';
-import { useAuthModals } from '@/hooks/auth';
+import { useAuthModalsContext } from '@/containers/Auth/AuthModalsProvider';
 import usePurchase from '@/hooks/purchase/usePurchase';
 import useLatestPurchase from '@/hooks/purchase/useLatestPurchase';
-import LoginContainer from '@/containers/Auth/Login';
-import RegisterContainer from '@/containers/Auth/Register';
 
 const PurchasePage = () => {
-  const {
-    isLoginModalOpen,
-    openLoginModal,
-    closeLoginModal,
-    isRegisterModalOpen,
-    openRegisterModal,
-    closeRegisterModal,
-  } = useAuthModals();
+  const { openLoginModal } = useAuthModalsContext();
 
   const {
     formData,
@@ -27,49 +18,29 @@ const PurchasePage = () => {
     onAnalyze,
   } = usePurchase({ onRequireLogin: openLoginModal });
 
-  const {
-    latestPurchase,
-    isLoading: isLatestLoading,
-    error: latestError,
-    fetchLatestPurchase: refetchLatestPurchase,
-  } = useLatestPurchase();
+  const { latestPurchase, fetchLatestPurchase: refetchLatestPurchase } = useLatestPurchase();
 
   const handleAnalyze = async () => {
-    await onAnalyze();
-    await refetchLatestPurchase();
+    const isSuccess = await onAnalyze();
+
+    if (isSuccess) {
+      await refetchLatestPurchase();
+    }
   };
 
   return (
-    <>
-      <Purchase
-        latestPurchase={latestPurchase}
-        isLatestLoading={isLatestLoading}
-        latestError={latestError}
-        formData={formData}
-        isDisabled={isDisabled}
-        submitError={submitError}
-        isSubmitting={isSubmitting}
-        onChangeFormData={onChangeFormData}
-        onChangeQuantity={onChangeQuantity}
-        onChangeDecisionTimer={onChangeDecisionTimer}
-        onChangeImage={onChangeImage}
-        onAnalyze={handleAnalyze}
-      />
-      {isLoginModalOpen && (
-        <LoginContainer
-          isOpen={isLoginModalOpen}
-          onClose={closeLoginModal}
-          goToRegister={openRegisterModal}
-        />
-      )}
-      {isRegisterModalOpen && (
-        <RegisterContainer
-          isOpen={isRegisterModalOpen}
-          onClose={closeRegisterModal}
-          goToLogin={openLoginModal}
-        />
-      )}
-    </>
+    <Purchase
+      latestPurchase={latestPurchase}
+      formData={formData}
+      isDisabled={isDisabled}
+      submitError={submitError}
+      isSubmitting={isSubmitting}
+      onChangeFormData={onChangeFormData}
+      onChangeQuantity={onChangeQuantity}
+      onChangeDecisionTimer={onChangeDecisionTimer}
+      onChangeImage={onChangeImage}
+      onAnalyze={handleAnalyze}
+    />
   );
 };
 

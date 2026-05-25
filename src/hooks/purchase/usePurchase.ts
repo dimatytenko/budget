@@ -83,10 +83,10 @@ const usePurchase = (options: { onRequireLogin: () => void }) => {
     if (submitError) setSubmitError(null);
   };
 
-  const onAnalyze = async () => {
+  const onAnalyze = async (): Promise<boolean> => {
     if (isDisabled || !user) {
       if (!user) onRequireLogin();
-      return;
+      return false;
     }
 
     setIsSubmitting(true);
@@ -97,8 +97,10 @@ const usePurchase = (options: { onRequireLogin: () => void }) => {
 
       updateUser(data.data.user);
       setFormValues(withUserFinancialDefaults(INITIAL_PURCHASE_STATE, data.data.user));
+      return true;
     } catch (error) {
       setSubmitError(getApiErrorMessage(error));
+      return false;
     } finally {
       setIsSubmitting(false);
     }
