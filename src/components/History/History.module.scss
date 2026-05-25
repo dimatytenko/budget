@@ -64,10 +64,8 @@
   }
 }
 
-.loader_wrap {
-  display: flex;
-  justify-content: center;
-  padding: 48px 0;
+.pagination {
+  margin: 0 auto;
 }
 
 .empty_state {
@@ -77,10 +75,6 @@
   line-height: 1.5;
   color: $color-grey;
   text-align: center;
-}
-
-.pagination {
-  margin: 0 auto;
 }
 
 .add_button {

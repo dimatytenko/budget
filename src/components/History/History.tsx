@@ -20,7 +20,7 @@ import { routes } from '@/constants/routes';
 import { STAT_TOOLTIPS } from '@/constants/statistics';
 import type { PaginationMeta } from '@/types/helpers';
 import type { BasePurchaseInterface, PurchaseOverview } from '@/types/purchase';
-import { Button, ErrorMessage, Loader, Pagination, SegmentedFilter, StatCard } from '@/ui-kit';
+import { Button, ErrorMessage, PageLoader, Pagination, SegmentedFilter, StatCard } from '@/ui-kit';
 import {
   formatAnnualReturn,
   formatOverviewWorkHours,
@@ -63,9 +63,12 @@ const History: React.FC<HistoryProps> = ({
   const navigate = useNavigate();
   const showPagination = pagination.totalPages > 1;
   const isOverviewReady = Boolean(overview) && !isOverviewLoading;
+  const isPageLoading = isLoading || isOverviewLoading;
 
   return (
     <PageWrapper title="History" subtitle="Track your purchase history">
+      {isPageLoading ? <PageLoader /> : null}
+
       <section className={styles.page}>
         <div className={styles.overview_section}>
           <h2 className={styles.section_title}>Overview</h2>
@@ -136,11 +139,7 @@ const History: React.FC<HistoryProps> = ({
           {error ? <ErrorMessage message={error} /> : null}
           {actionError ? <ErrorMessage message={actionError} /> : null}
 
-          {isLoading ? (
-            <div className={styles.loader_wrap}>
-              <Loader />
-            </div>
-          ) : purchases.length > 0 ? (
+          {purchases.length > 0 ? (
             <div className={styles.list}>
               {purchases.map((purchase) => (
                 <PurchaseCard
@@ -152,13 +151,13 @@ const History: React.FC<HistoryProps> = ({
                 />
               ))}
             </div>
-          ) : (
+          ) : !isLoading ? (
             <p className={styles.empty_state}>
               {filter === 'all'
                 ? 'No purchases yet. Add your first purchase to start tracking.'
                 : `No ${filter} purchases found.`}
             </p>
-          )}
+          ) : null}
 
           {showPagination && !isLoading ? (
             <Pagination
