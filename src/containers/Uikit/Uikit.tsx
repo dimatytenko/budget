@@ -1,3 +1,11 @@
+import {
+  BriefcaseIcon,
+  ChartUpIcon,
+  ClockIcon,
+  DollarIcon,
+  SadIcon,
+  SmileIcon,
+} from '@/assets/icons';
 import styles from './Uikit.module.scss';
 import {
   Button,
@@ -6,6 +14,7 @@ import {
   Logo,
   QuantityStepper,
   Select,
+  StatCard,
   StepProgress,
 } from '@/ui-kit';
 
@@ -22,6 +31,53 @@ const Uikit = () => {
       </div>
 
       <StepProgress current={1} total={4} />
+
+      <section className={styles.section}>
+        <h2 className={styles.subtitle}>Statistics</h2>
+        <div className={styles.stats_grid}>
+          <StatCard
+            label="Total saved"
+            value="150,68"
+            unit="usd"
+            variant="saved"
+            icon={<DollarIcon aria-hidden />}
+          />
+          <StatCard
+            label="Work hours"
+            value="85h 20m"
+            variant="workHours"
+            icon={<BriefcaseIcon aria-hidden />}
+          />
+          <StatCard
+            label="Annual return"
+            value="300"
+            unit="usd"
+            variant="annualReturn"
+            icon={<ChartUpIcon aria-hidden />}
+          />
+          <StatCard
+            label="Rejected"
+            value="2"
+            unit="purchases"
+            variant="rejected"
+            icon={<SmileIcon aria-hidden />}
+          />
+          <StatCard
+            label="Pending"
+            value="1"
+            unit="purchases"
+            variant="pending"
+            icon={<ClockIcon aria-hidden />}
+          />
+          <StatCard
+            label="Bought"
+            value="1"
+            unit="purchases"
+            variant="bought"
+            icon={<SadIcon aria-hidden />}
+          />
+        </div>
+      </section>
 
       <section className={styles.section}>
         <h2 className={styles.subtitle}>Inputs</h2>

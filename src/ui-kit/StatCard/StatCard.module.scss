@@ -1,0 +1,99 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  background-color: $color-light;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.label_row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: $font-weight-medium;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $color-grey;
+}
+
+.info_icon {
+  width: 12px;
+  height: 12px;
+  color: $color-grey;
+}
+
+.value {
+  margin: 0;
+  font-size: 20px;
+  font-weight: $font-weight-semibold;
+  line-height: 1.1;
+  color: $color-font-tertiary;
+}
+
+.unit {
+  font-size: 11px;
+  line-height: 1.2;
+  color: $color-grey;
+}
+
+.icon_wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.saved {
+  background-color: #eef6ef;
+  color: #2f6b3b;
+}
+
+.workHours {
+  background-color: #fbf7ea;
+  color: #8a6a1f;
+}
+
+.annualReturn {
+  background-color: #edf3fb;
+  color: #3b6ea8;
+}
+
+.rejected {
+  background-color: #eef6ef;
+  color: #2f6b3b;
+}
+
+.pending {
+  background-color: #fbf7ea;
+  color: #8a6a1f;
+}
+
+.bought {
+  background-color: #fdf0ea;
+  color: #9a5a3a;
+}

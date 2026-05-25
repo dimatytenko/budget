@@ -21,6 +21,26 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+}
+
+.stats_grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+
+  @include media-down($breakpoint-xl) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include media-down($breakpoint-m) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-down($breakpoint-xs) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .inputs_column {

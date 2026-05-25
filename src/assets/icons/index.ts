@@ -18,6 +18,10 @@ import SearchIcon from './search.svg?react';
 import ChartUpIcon from './chart-up.svg?react';
 import PhoneIcon from './phone.svg?react';
 import PurchaseTagIcon from './purchase-tag.svg?react';
+import InfoIcon from './info.svg?react';
+import BriefcaseIcon from './briefcase.svg?react';
+import SmileIcon from './smile.svg?react';
+import SadIcon from './sad.svg?react';
 
 export {
   LogoIcon,
@@ -40,4 +44,8 @@ export {
   ChartUpIcon,
   PhoneIcon,
   PurchaseTagIcon,
+  InfoIcon,
+  BriefcaseIcon,
+  SmileIcon,
+  SadIcon,
 };

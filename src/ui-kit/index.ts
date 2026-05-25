@@ -9,6 +9,7 @@ import { StepProgress } from './StepProgress';
 import ButtonClose from './ButtonClose';
 import Modal from './Modal';
 import ErrorMessage from './ErrorMessage';
+import { StatCard } from './StatCard';
 
 export {
   Button,
@@ -23,6 +24,7 @@ export {
   ButtonClose,
   Modal,
   ErrorMessage,
+  StatCard,
 };
 export type { ButtonProps, ButtonVariant, IconPosition } from './Button';
 export type { InputProps, InputType } from './Input';
@@ -31,3 +33,4 @@ export type { SelectProps, SelectOption } from './Select';
 export type { ImageUploadProps } from './ImageUpload';
 export type { LogoProps } from './Logo';
 export type { StepProgressProps } from './StepProgress';
+export type { StatCardProps, StatCardVariant } from './StatCard';
