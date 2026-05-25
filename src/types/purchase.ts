@@ -8,6 +8,15 @@ export interface PurchaseStatistics {
   investmentIncome: number;
 }
 
+export interface PurchaseOverview {
+  totalSaved: number;
+  workHours: number;
+  annualReturn: number;
+  rejectedCount: number;
+  pendingCount: number;
+  boughtCount: number;
+}
+
 export interface BasePurchaseInterface {
   id: string;
   userId: string;

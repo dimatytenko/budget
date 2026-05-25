@@ -1,14 +1,15 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 32px;
   width: 100%;
 }
 
-.toolbar {
+.overview_section,
+.history_section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 28px;
   width: 100%;
 }
 
@@ -22,9 +23,68 @@
   color: $color-grey;
 }
 
-.list {
+.stats_grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+
+  @include media-down($breakpoint-xl) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include media-down($breakpoint-m) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-down($breakpoint-xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.toolbar {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+
+  @include media-down($breakpoint-l) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include media-down($breakpoint-s) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loader_wrap {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+.empty_state {
+  margin: 0;
+  padding: 32px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $color-grey;
+  text-align: center;
+}
+
+.pagination {
+  margin: 0 auto;
+}
+
+.add_button {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
 }

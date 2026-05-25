@@ -10,7 +10,7 @@ import type {
   PaginationParams,
   SortParams,
 } from '@/types/helpers';
-import type { BasePurchaseInterface } from '@/types/purchase';
+import type { BasePurchaseInterface, PurchaseOverview } from '@/types/purchase';
 import type { BaseUserInterface } from '@/types/user';
 
 export interface PurchaseFormData {
@@ -38,6 +38,10 @@ export interface ListPurchasesParams extends PaginationParams, SortParams<Purcha
 export type ListPurchasesResponse = BaseResponseInterface<{
   purchases: BasePurchaseInterface[];
   pagination: PaginationMeta;
+}>;
+
+export type PurchaseStatisticsResponse = BaseResponseInterface<{
+  statistics: PurchaseOverview;
 }>;
 
 export type PurchaseResponse = BaseResponseInterface<{

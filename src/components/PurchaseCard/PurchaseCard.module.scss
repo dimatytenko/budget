@@ -8,6 +8,51 @@
   background-color: $color-light;
 }
 
+.card_grid {
+  height: 100%;
+
+  .hero_image_wrap {
+    aspect-ratio: 1 / 1;
+  }
+
+  .details {
+    gap: 12px;
+  }
+
+  .details_header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .details_meta {
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $color-border;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .details_price,
+  .summary_price {
+    font-size: 16px;
+  }
+
+  .stats {
+    gap: 8px;
+  }
+
+  .stat_label {
+    font-size: 9px;
+  }
+
+  .stat_value {
+    font-size: 12px;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -21,12 +66,16 @@
   gap: 6px;
   font-size: 12px;
   line-height: 1.2;
-  color: $color-grey;
+  color: $color-brand;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid $color-border;
 }
 
 .date_icon {
   width: 14px;
   height: 14px;
+  color: $color-brand;
 }
 
 .header_actions {
@@ -114,7 +163,7 @@
   font-size: 16px;
   font-weight: $font-weight-semibold;
   line-height: 1.2;
-  color: $color-font-tertiary;
+  color: $color-brand;
 }
 
 .link {
@@ -143,13 +192,19 @@
   height: 12px;
 }
 
+.link_wrap {
+  display: inline-flex;
+  width: 100%;
+  height: 12px;
+}
+
 .summary_price,
 .details_price {
   margin: 0;
   font-size: 18px;
   font-weight: $font-weight-semibold;
   line-height: 1.1;
-  color: $color-font-tertiary;
+  color: $color-brand;
   white-space: nowrap;
 }
 
@@ -223,7 +278,7 @@
   font-size: 12px;
   font-weight: $font-weight-semibold;
   line-height: 1.2;
-  color: $color-font-tertiary;
+  color: $color-brand;
 }
 
 .impact_track {
@@ -238,7 +293,7 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background-color: #e57373;
+  background-color: $color-alert;
 }
 
 .stats {
@@ -246,7 +301,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   padding-top: 4px;
-  border-top: 1px solid $color-border;
 
   @include media-down($breakpoint-s) {
     gap: 8px;
@@ -273,7 +327,7 @@
   font-size: 14px;
   font-weight: $font-weight-semibold;
   line-height: 1.2;
-  color: $color-font-tertiary;
+  color: $color-brand;
 }
 
 .stat_valueAccent {

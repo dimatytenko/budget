@@ -28,6 +28,8 @@ export type PurchaseSortField = (typeof PURCHASE_SORT_FIELDS)[number];
 
 export const DEFAULT_DECISION_TIMER: DecisionTimer = '24h';
 
+export const PURCHASES_PAGE_LIMIT = 8;
+
 export const DECISION_TIMER_OPTIONS: { value: DecisionTimer; label: string }[] = [
   { value: '24h', label: '24 hours (recommended)' },
   { value: '12h', label: '12 hours' },

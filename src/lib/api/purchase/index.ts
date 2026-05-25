@@ -7,6 +7,7 @@ import type {
   ListPurchasesResponse,
   PurchaseFormData,
   PurchaseResponse,
+  PurchaseStatisticsResponse,
   UpdatePurchaseStatusBody,
 } from '@/lib/api/purchase/types';
 
@@ -20,6 +21,7 @@ export const purchaseApi = {
     }),
 
   getLatest: () => apiInstance.get<PurchaseResponse>('/purchases/latest'),
+  getStatistics: () => apiInstance.get<PurchaseStatisticsResponse>('/purchases/statistics'),
   getById: (id: string) => apiInstance.get<PurchaseResponse>(`/purchases/${id}`),
   create: (data: PurchaseFormData) =>
     apiInstanceImages.post<CreatePurchaseResponse>('/purchases', buildPurchaseFormData(data)),
@@ -36,6 +38,7 @@ export type {
   ListPurchasesParams,
   ListPurchasesResponse,
   PurchaseResponse,
+  PurchaseStatisticsResponse,
   UpdatePurchaseStatusBody,
 } from '@/lib/api/purchase/types';
 export type { PaginationMeta, SortOrder } from '@/types/helpers';

@@ -7,10 +7,7 @@ import { type FinalPurchaseStatus } from '@/constants/purchase';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import type { BasePurchaseInterface } from '@/types/purchase';
 import { formatPurchaseDate } from '@/utils/purchase/formatPurchaseDate';
-import {
-  formatIncomePercent,
-  formatWorkHours,
-} from '@/utils/purchase/formatPurchaseStatistics';
+import { formatIncomePercent, formatWorkHours } from '@/utils/purchase/formatPurchaseStatistics';
 import { formatTimerLeft } from '@/utils/purchase/formatTimerLeft';
 import { resolvePurchaseImageUrl } from '@/utils/purchase/resolvePurchaseImageUrl';
 
@@ -20,6 +17,7 @@ interface PurchaseCardProps {
   purchase: BasePurchaseInterface;
   onDelete?: (id: string) => void;
   onStatusChange?: (id: string, status: FinalPurchaseStatus) => void;
+  layout?: 'default' | 'grid';
   className?: string;
 }
 
@@ -53,6 +51,7 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
   purchase,
   onDelete,
   onStatusChange,
+  layout = 'default',
   className,
 }) => {
   const detailsId = useId();
@@ -95,7 +94,14 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
   };
 
   return (
-    <article className={clsx(styles.card, isExpanded && styles.card_expanded, className)}>
+    <article
+      className={clsx(
+        styles.card,
+        layout === 'grid' && styles.card_grid,
+        isExpanded && styles.card_expanded,
+        className,
+      )}
+    >
       <header className={styles.header}>
         <div className={styles.date}>
           <CalendarIcon aria-hidden className={styles.date_icon} />
@@ -181,29 +187,31 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
             <div className={styles.details_info}>
               <h3 className={styles.title}>{purchase.name}</h3>
 
-              {purchase.link ? (
-                <a
-                  href={purchase.link}
-                  className={styles.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {getLinkLabel(purchase.link)}
-                  <ExternalLinkIcon aria-hidden className={styles.link_icon} />
-                </a>
-              ) : null}
+              <span className={styles.link_wrap}>
+                {purchase.link ? (
+                  <a
+                    href={purchase.link}
+                    className={styles.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {getLinkLabel(purchase.link)}
+                    <ExternalLinkIcon aria-hidden className={styles.link_icon} />
+                  </a>
+                ) : null}
+              </span>
             </div>
 
             <div className={styles.details_meta}>
-              <StatusBadge
-              status={purchase.status}
-              onStatusChange={
-                onStatusChange ? (status) => onStatusChange(purchase.id, status) : undefined
-              }
-            />
               <p className={styles.details_price}>
                 {formatPrice(purchase.price, purchase.quantity)}
               </p>
+              <StatusBadge
+                status={purchase.status}
+                onStatusChange={
+                  onStatusChange ? (status) => onStatusChange(purchase.id, status) : undefined
+                }
+              />
             </div>
           </div>
 
