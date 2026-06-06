@@ -49,7 +49,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
             <Button
               variant="primary"
               icon={'ArrowRightIcon'}
-              text={isLastStep ? 'Go to dashboard' : isFirstStep ? 'Try it FREE' : 'Next'}
+              text={isLastStep ? 'Go to dashboard' : isFirstStep ? 'Get Started' : 'Next'}
               onClick={handleNext}
               className={styles.button}
             />
