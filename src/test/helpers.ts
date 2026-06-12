@@ -1,3 +1,4 @@
+/** Shared test fixtures and Zustand store helpers for hook/component/integration tests. */
 import type { BasePurchaseInterface } from '@/types/purchase';
 import type { BaseUserInterface } from '@/types/user';
 import { useUserStore } from '@/store/useUserStore';

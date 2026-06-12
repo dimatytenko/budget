@@ -8,6 +8,13 @@ const toNum = (v: string | number): number => {
   return Number.isFinite(n) ? n : 0;
 };
 
+/**
+ * Derives preview statistics from controlled form fields.
+ *
+ * Returns `null` when price is missing or ≤ 0 — that signals the analysis panel
+ * should stay in Idle, not an error state. Empty quantity falls back to 1 so
+ * partial form input still produces a meaningful preview.
+ */
 export const buildStats = (formData: PurchaseFormData): PurchaseStatistics | null => {
   const price = toNum(formData.price);
   if (price <= 0) return null;

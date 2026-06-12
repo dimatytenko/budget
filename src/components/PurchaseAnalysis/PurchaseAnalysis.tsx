@@ -17,6 +17,12 @@ import {
 
 import styles from './PurchaseAnalysis.module.scss';
 
+/**
+ * Purchase analysis panel — three mutually exclusive states:
+ * - Idle: no price entered, no fresh submit
+ * - Preview: live stats from form fields (previewStats); overrides Confirmation
+ * - Confirmation: post-submit pause + timer; no stat cards (values live in History)
+ */
 interface PurchaseAnalysisProps {
   previewStats: PurchaseStatistics | null;
   previewInvestForYear: number;

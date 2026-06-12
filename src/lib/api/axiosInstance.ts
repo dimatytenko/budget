@@ -3,6 +3,7 @@ import type { AxiosInstance } from 'axios';
 
 import { config } from '@/config/env';
 
+/** JSON API client — all REST calls go through this instance (or apiInstanceImages for uploads). */
 export const apiInstance: AxiosInstance = axios.create({
   baseURL: config.apiBaseUrl,
   headers: {

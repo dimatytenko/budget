@@ -15,6 +15,10 @@ const formatDuration = (milliseconds: number): string => {
   return [hours, minutes, seconds].map((value) => String(value).padStart(2, '0')).join(':');
 };
 
+/**
+ * Reflection timer for pending purchases. Progress spans createdAt → decisionEndsAt;
+ * updates every second while a deadline is active.
+ */
 export const useDecisionCountdown = (
   decisionEndsAt: string | null,
   createdAt: string | null,
@@ -39,6 +43,7 @@ export const useDecisionCountdown = (
     };
   }
 
+  // Progress bar fills as elapsed time grows from purchase creation to the decision deadline.
   const endTime = new Date(decisionEndsAt).getTime();
   const startTime = createdAt ? new Date(createdAt).getTime() : endTime;
   const totalDuration = Math.max(endTime - startTime, 1);

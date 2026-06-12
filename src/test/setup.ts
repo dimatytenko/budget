@@ -1,3 +1,4 @@
+/** Vitest global setup: jest-dom matchers, RTL cleanup, MSW server lifecycle, jsdom polyfills. */
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
 import { afterAll, afterEach, beforeAll } from 'vitest';

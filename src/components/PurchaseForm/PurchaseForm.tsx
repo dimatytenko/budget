@@ -5,6 +5,7 @@ import { Button, ErrorMessage, ImageUpload, Input, QuantityStepper, Select } fro
 
 import styles from './PurchaseForm.module.scss';
 
+/** Presentational form — all state and handlers come from `usePurchase`. */
 interface PurchaseFormProps {
   formData: PurchaseFormData;
   isDisabled: boolean;

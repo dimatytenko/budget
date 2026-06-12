@@ -1,3 +1,4 @@
+/** MSW node server — intercepts axios at the network layer; default handlers extended per test file. */
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 
