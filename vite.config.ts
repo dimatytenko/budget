@@ -24,6 +24,7 @@ export default defineConfig({
       },
     },
   },
+  // Vitest config — does not affect `npm run dev` or production builds.
   test: {
     environment: 'jsdom',
     globals: true,

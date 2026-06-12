@@ -13,6 +13,7 @@ import type { BaseUserInterface } from '@/types/user';
 
 import PurchasePage from './Purchase';
 
+/** MSW integration: Add page submit flow (success, 500, 401, unauthenticated login modal). */
 const renderPurchasePage = async () => {
   let latestFetchResolved = false;
 

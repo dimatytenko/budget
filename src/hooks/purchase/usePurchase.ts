@@ -51,6 +51,13 @@ const isFormComplete = (formData: PurchaseFormData) =>
       formData.investForYear.trim(),
   );
 
+/**
+ * Owns the Add Purchase form, live preview stats, and submit flow.
+ *
+ * `previewStats` is derived locally on every financial field change (no API calls).
+ * After a successful submit, `lastSubmittedPurchase` drives the Confirmation panel
+ * while the form resets; typing a new price switches back to Preview.
+ */
 const usePurchase = (options: { onRequireLogin: () => void }) => {
   const { onRequireLogin } = options;
   const { user, updateUser } = useUser();

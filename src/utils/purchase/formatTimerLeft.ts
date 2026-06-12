@@ -1,3 +1,7 @@
+/**
+ * History card countdown as `H:MM:SS left` (seconds tick live via interval in PurchaseCard).
+ * Returns "Time's up" when the deadline has passed.
+ */
 export const formatTimerLeft = (decisionEndsAt: string | null): string | null => {
   if (!decisionEndsAt) return null;
 

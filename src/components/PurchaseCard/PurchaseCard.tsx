@@ -63,6 +63,7 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
     }
   }, [isMobile]);
 
+  // Pending purchases show a live H:MM:SS countdown; interval clears on unmount or status change.
   useEffect(() => {
     if (purchase.status !== 'pending') {
       setTimerLeft(null);
@@ -220,6 +221,7 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
                 </div>
 
                 <div className={styles.impact_track} aria-hidden>
+                  {/* Cap at 100% so purchases costing more than monthly income do not overflow the bar. */}
                   <span
                     className={styles.impact_fill}
                     style={{ width: `${Math.min(statistics.incomePercent, 100)}%` }}

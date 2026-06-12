@@ -7,6 +7,7 @@ function getEnvVariable(key: string, fallback = ''): string {
   return value;
 }
 
+// Falls back to localhost when VITE_BASE_URL is unset. Set it in `.env` and restart `npm run dev` — Vite only reads env on server start.
 export const config = {
   apiBaseUrl: getEnvVariable('VITE_BASE_URL', 'http://localhost:3000'),
 };

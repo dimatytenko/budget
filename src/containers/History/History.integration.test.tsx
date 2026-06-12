@@ -9,6 +9,7 @@ import type { BasePurchaseInterface, PurchaseOverview } from '@/types/purchase';
 
 import HistoryPage from './History';
 
+/** MSW integration: History overview formatting and empty purchase list. */
 const overview: PurchaseOverview = {
   totalSaved: 1100,
   workHours: 216905.0167,
