@@ -3,12 +3,12 @@ export const formatTimerLeft = (decisionEndsAt: string | null): string | null =>
 
   const remaining = Math.max(new Date(decisionEndsAt).getTime() - Date.now(), 0);
 
-  if (remaining === 0) {
-    return '0:00 left';
-  }
+  if (remaining === 0) return "Time's up";
 
-  const hours = Math.floor(remaining / 3600000);
-  const minutes = Math.floor((remaining % 3600000) / 60000);
+  const totalSeconds = Math.floor(remaining / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
 
-  return `${hours}:${String(minutes).padStart(2, '0')} left`;
+  return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} left`;
 };

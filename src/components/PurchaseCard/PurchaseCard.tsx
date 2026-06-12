@@ -7,6 +7,7 @@ import { type FinalPurchaseStatus } from '@/constants/purchase';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import type { BasePurchaseInterface } from '@/types/purchase';
 import { formatPurchaseDate } from '@/utils/purchase/formatPurchaseDate';
+import { formatMoney } from '@/utils/purchase/formatMoney';
 import { formatIncomePercent, formatWorkHours } from '@/utils/purchase/formatPurchaseStatistics';
 import { formatTimerLeft } from '@/utils/purchase/formatTimerLeft';
 import { resolvePurchaseImageUrl } from '@/utils/purchase/resolvePurchaseImageUrl';
@@ -20,15 +21,6 @@ interface PurchaseCardProps {
   layout?: 'default' | 'grid';
   className?: string;
 }
-
-const formatPrice = (price: number, quantity: number) => {
-  const total = price * quantity;
-
-  return `$${total.toLocaleString('en-US', {
-    minimumFractionDigits: Number.isInteger(total) ? 0 : 2,
-    maximumFractionDigits: 2,
-  })}`;
-};
 
 const getLinkLabel = (link: string) => {
   try {
@@ -169,7 +161,9 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
             />
           </div>
 
-          <p className={styles.summary_price}>{formatPrice(purchase.price, purchase.quantity)}</p>
+          <p className={styles.summary_price}>
+            {formatMoney(purchase.price * purchase.quantity)}
+          </p>
         </div>
       ) : null}
 
@@ -204,7 +198,7 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
 
             <div className={styles.details_meta}>
               <p className={styles.details_price}>
-                {formatPrice(purchase.price, purchase.quantity)}
+                {formatMoney(purchase.price * purchase.quantity)}
               </p>
               <StatusBadge
                 status={purchase.status}
@@ -244,7 +238,7 @@ export const PurchaseCard: React.FC<PurchaseCardProps> = ({
                 <div className={styles.stat_item}>
                   <span className={styles.stat_label}>Annual return</span>
                   <span className={styles.stat_value}>
-                    {Math.round(statistics.investmentIncome).toLocaleString('en-US')} usd
+                    {formatMoney(statistics.investmentIncome)}
                   </span>
                 </div>
 
