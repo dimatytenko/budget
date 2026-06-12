@@ -1,12 +1,17 @@
-export const formatWorkHours = (hours: number): string => {
-  const wholeHours = Math.floor(hours);
-  const minutes = Math.round((hours - wholeHours) * 60);
+import { formatMoney, NUMBER_LOCALE } from '@/utils/purchase/formatMoney';
 
-  if (minutes === 0) {
-    return `${wholeHours}h`;
+export const formatWorkHours = (hours: number): string => {
+  let wholeHours = Math.floor(hours);
+  let minutes = Math.round((hours - wholeHours) * 60);
+
+  if (minutes === 60) {
+    wholeHours += 1;
+    minutes = 0;
   }
 
-  return `${wholeHours}h ${minutes}m`;
+  const h = wholeHours.toLocaleString(NUMBER_LOCALE);
+
+  return minutes === 0 ? `${h}h` : `${h}h ${minutes}m`;
 };
 
 export const formatIncomePercent = (percent: number): string => {
@@ -14,9 +19,8 @@ export const formatIncomePercent = (percent: number): string => {
   return Number.isInteger(rounded) ? `${rounded}%` : `${rounded.toFixed(1)}%`;
 };
 
-export const formatInvestmentIncome = (amount: number): string => {
-  return `+$${Math.round(amount).toLocaleString('en-US')}`;
-};
+export const formatInvestmentIncome = (amount: number): string =>
+  formatMoney(amount, { sign: true });
 
 export const formatInvestYears = (years: number): string => {
   return years === 1 ? '1 year' : `${years} years`;

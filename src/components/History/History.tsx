@@ -76,7 +76,6 @@ const History: React.FC<HistoryProps> = ({
             <StatCard
               label="Total saved"
               value={isOverviewReady ? formatTotalSaved(overview!.totalSaved) : '--'}
-              unit="usd"
               variant="saved"
               infoTooltip={STAT_TOOLTIPS.totalSaved}
               icon={<DollarIcon aria-hidden />}
@@ -91,7 +90,6 @@ const History: React.FC<HistoryProps> = ({
             <StatCard
               label="Annual return"
               value={isOverviewReady ? formatAnnualReturn(overview!.annualReturn) : '--'}
-              unit="usd"
               variant="annualReturn"
               infoTooltip={STAT_TOOLTIPS.annualReturn}
               icon={<ChartUpIcon aria-hidden />}
