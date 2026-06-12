@@ -5,8 +5,10 @@ import { useUser } from '@/hooks/user';
 import { getApiErrorMessage } from '@/lib/api/handleApiError';
 import { purchaseApi } from '@/lib/api/purchase';
 import type { PurchaseFormData } from '@/lib/api/purchase/types';
+import type { BasePurchaseInterface } from '@/types/purchase';
 import type { UserType } from '@/types/user';
 import changeInputValues from '@/utils/changeInputValues';
+import { buildStats } from '@/utils/purchase/buildStats';
 
 export type { PurchaseFormData };
 
@@ -55,6 +57,8 @@ const usePurchase = (options: { onRequireLogin: () => void }) => {
   const [formValues, setFormValues] = useState<PurchaseFormData>(INITIAL_PURCHASE_STATE);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSubmittedPurchase, setLastSubmittedPurchase] =
+    useState<BasePurchaseInterface | null>(null);
 
   const formData = useMemo(
     () => (user ? withUserFinancialDefaults(formValues, user) : formValues),
@@ -62,6 +66,18 @@ const usePurchase = (options: { onRequireLogin: () => void }) => {
   );
 
   const isDisabled = useMemo(() => !isFormComplete(formData), [formData]);
+
+  const previewStats = useMemo(
+    () => buildStats(formData),
+    [
+      formData.price,
+      formData.quantity,
+      formData.salary,
+      formData.workHoursByWeek,
+      formData.expectReturnPercentage,
+      formData.investForYear,
+    ],
+  );
 
   const onChangeFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
     changeInputValues(e, setFormValues);
@@ -96,6 +112,7 @@ const usePurchase = (options: { onRequireLogin: () => void }) => {
       const { data } = await purchaseApi.create(formData);
 
       updateUser(data.data.user);
+      setLastSubmittedPurchase(data.data.purchase);
       setFormValues(withUserFinancialDefaults(INITIAL_PURCHASE_STATE, data.data.user));
       return true;
     } catch (error) {
@@ -108,6 +125,8 @@ const usePurchase = (options: { onRequireLogin: () => void }) => {
 
   return {
     formData,
+    previewStats,
+    lastSubmittedPurchase,
     isDisabled,
     submitError,
     isSubmitting,

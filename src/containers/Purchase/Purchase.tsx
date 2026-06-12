@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import Purchase from '@/components/Purchase';
 import { useAuthModalsContext } from '@/containers/Auth/AuthModalsProvider';
 import usePurchase from '@/hooks/purchase/usePurchase';
@@ -8,6 +10,8 @@ const PurchasePage = () => {
 
   const {
     formData,
+    previewStats,
+    lastSubmittedPurchase,
     isDisabled,
     submitError,
     isSubmitting,
@@ -20,6 +24,12 @@ const PurchasePage = () => {
 
   const { latestPurchase, fetchLatestPurchase: refetchLatestPurchase } = useLatestPurchase();
 
+  const confirmationPurchase = useMemo(() => {
+    if (previewStats !== null) return null;
+    if (lastSubmittedPurchase) return lastSubmittedPurchase;
+    return latestPurchase?.status === 'pending' ? latestPurchase : null;
+  }, [previewStats, lastSubmittedPurchase, latestPurchase]);
+
   const handleAnalyze = async () => {
     const isSuccess = await onAnalyze();
 
@@ -30,7 +40,8 @@ const PurchasePage = () => {
 
   return (
     <Purchase
-      latestPurchase={latestPurchase}
+      previewStats={previewStats}
+      confirmationPurchase={confirmationPurchase}
       formData={formData}
       isDisabled={isDisabled}
       submitError={submitError}

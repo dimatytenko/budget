@@ -6,7 +6,7 @@ import worthyTimeImg from '@/assets/images/worthy/worthy-time.png';
 import worthyLookImg from '@/assets/images/worthy/worthy-look.png';
 import { routes } from '@/constants/routes';
 import { useDecisionCountdown } from '@/hooks/purchase/useDecisionCountdown';
-import type { BasePurchaseInterface } from '@/types/purchase';
+import type { BasePurchaseInterface, PurchaseStatistics } from '@/types/purchase';
 import { Button } from '@/ui-kit';
 import {
   formatIncomePercent,
@@ -18,7 +18,9 @@ import {
 import styles from './PurchaseAnalysis.module.scss';
 
 interface PurchaseAnalysisProps {
-  purchase: BasePurchaseInterface | null;
+  previewStats: PurchaseStatistics | null;
+  previewInvestForYear: number;
+  confirmationPurchase: BasePurchaseInterface | null;
 }
 
 interface StatRowProps {
@@ -26,41 +28,46 @@ interface StatRowProps {
   value: string;
   description: string;
   valueClassName?: string;
-  isPlaceholder?: boolean;
 }
 
-const StatRow: React.FC<StatRowProps> = ({
-  icon,
-  value,
-  description,
-  valueClassName,
-  isPlaceholder,
-}) => (
-  <div className={clsx(styles.stat_row, value && styles.stat_rowActive)}>
-    <span className={clsx(styles.stat_icon, value && styles.stat_iconActive)}>{icon}</span>
+const StatRow: React.FC<StatRowProps> = ({ icon, value, description, valueClassName }) => (
+  <div className={clsx(styles.stat_row, styles.stat_rowActive)}>
+    <span className={clsx(styles.stat_icon, styles.stat_iconActive)}>{icon}</span>
     <p className={styles.stat_text}>
-      <span
-        className={clsx(
-          styles.stat_value,
-          isPlaceholder && styles.stat_valuePlaceholder,
-          valueClassName,
-        )}
-      >
-        {value}
-      </span>{' '}
-      {description}
+      <span className={clsx(styles.stat_value, valueClassName)}>{value}</span> {description}
     </p>
   </div>
 );
 
-const PurchaseAnalysis: React.FC<PurchaseAnalysisProps> = ({ purchase }) => {
+const PurchaseAnalysis: React.FC<PurchaseAnalysisProps> = ({
+  previewStats,
+  previewInvestForYear,
+  confirmationPurchase,
+}) => {
   const navigate = useNavigate();
-  const hasPurchase = Boolean(purchase);
-  const statistics = purchase?.statistics;
+
+  const isPreview = previewStats !== null;
+  const isConfirmation = !isPreview && confirmationPurchase !== null;
+  const isIdle = !isPreview && !isConfirmation;
+
   const { formatted, progress } = useDecisionCountdown(
-    purchase?.status === 'pending' ? purchase.decisionEndsAt : null,
-    purchase?.createdAt ?? null,
+    isConfirmation && confirmationPurchase?.status === 'pending'
+      ? confirmationPurchase.decisionEndsAt
+      : null,
+    isConfirmation ? (confirmationPurchase?.createdAt ?? null) : null,
   );
+
+  const heroImage = isConfirmation ? worthyTimeImg : worthyLookImg;
+  const heroTitle = isConfirmation
+    ? 'Your reflection pause has started'
+    : isPreview
+      ? 'See how this purchase fits your life'
+      : 'Take a moment to think';
+  const heroSubtitle = isConfirmation
+    ? 'Reflect before you decide.'
+    : isPreview
+      ? 'Stats update as you fill in the form.'
+      : 'Enter purchase details on the left to see your analysis.';
 
   return (
     <aside className={styles.card} aria-label="Purchase analysis">
@@ -69,49 +76,34 @@ const PurchaseAnalysis: React.FC<PurchaseAnalysisProps> = ({ purchase }) => {
         <h2 className={styles.title}>Purchase analysis</h2>
       </div>
 
-      <div className={clsx(styles.hero, hasPurchase && styles.heroActive)}>
-        <img
-          src={hasPurchase ? worthyTimeImg : worthyLookImg}
-          alt=""
-          className={styles.hero_image}
-        />
-        <p className={styles.hero_title}>
-          {hasPurchase ? 'Take a moment to think' : 'Add details to analyze'}
-        </p>
-        <p className={styles.hero_subtitle}>
-          {hasPurchase
-            ? 'Reflect before you decide.'
-            : 'Enter purchase details on the left to see your analysis.'}
-        </p>
+      <div className={clsx(styles.hero, !isIdle && styles.heroActive)}>
+        <img src={heroImage} alt="" className={styles.hero_image} />
+        <p className={styles.hero_title}>{heroTitle}</p>
+        <p className={styles.hero_subtitle}>{heroSubtitle}</p>
       </div>
 
-      <div className={styles.stats}>
-        <StatRow
-          icon={<ClockIcon aria-hidden />}
-          value={statistics ? formatWorkHours(statistics.workHoursToPay) : '--'}
-          description="work hours of your life"
-          isPlaceholder={!statistics}
-        />
-        <StatRow
-          icon={<DollarIcon aria-hidden />}
-          value={statistics ? formatIncomePercent(statistics.incomePercent) : '--'}
-          description="of your income"
-          isPlaceholder={!statistics}
-        />
-        <StatRow
-          icon={<ChartUpIcon aria-hidden />}
-          value={statistics ? formatInvestmentIncome(statistics.investmentIncome) : '--'}
-          description={
-            statistics
-              ? `income instead in ${formatInvestYears(purchase?.investForYear ?? 1)}`
-              : 'income instead in X year'
-          }
-          valueClassName={statistics ? styles.stat_valueAccent : undefined}
-          isPlaceholder={!statistics}
-        />
-      </div>
+      {isPreview ? (
+        <div className={styles.stats}>
+          <StatRow
+            icon={<ClockIcon aria-hidden />}
+            value={formatWorkHours(previewStats.workHoursToPay)}
+            description="work hours of your life"
+          />
+          <StatRow
+            icon={<DollarIcon aria-hidden />}
+            value={formatIncomePercent(previewStats.incomePercent)}
+            description="of your income"
+          />
+          <StatRow
+            icon={<ChartUpIcon aria-hidden />}
+            value={formatInvestmentIncome(previewStats.investmentIncome)}
+            description={`income instead in ${formatInvestYears(previewInvestForYear)}`}
+            valueClassName={styles.stat_valueAccent}
+          />
+        </div>
+      ) : null}
 
-      {hasPurchase && purchase?.status === 'pending' ? (
+      {isConfirmation && confirmationPurchase.status === 'pending' ? (
         <div className={styles.timer_card}>
           <div className={styles.timer_header}>
             <ClockIcon aria-hidden className={styles.timer_header_icon} />
@@ -127,21 +119,21 @@ const PurchaseAnalysis: React.FC<PurchaseAnalysisProps> = ({ purchase }) => {
 
           <div className={styles.purchase_tag}>
             <PurchaseTagIcon aria-hidden className={styles.purchase_tag_icon} />
-            <span>{purchase.name}</span>
+            <span>{confirmationPurchase.name}</span>
           </div>
         </div>
       ) : null}
 
-      {hasPurchase ? (
+      {isConfirmation ? (
         <Button
           text="View in History"
           icon="ArrowRightIcon"
           className={styles.history_btn}
           onClick={() => navigate(routes.history)}
         />
-      ) : (
+      ) : isIdle ? (
         <p className={styles.footer_note}>🔒 Your future purchase will be saved to History.</p>
-      )}
+      ) : null}
     </aside>
   );
 };
