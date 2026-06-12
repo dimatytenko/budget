@@ -4,10 +4,11 @@ import PurchaseAnalysis from '@/components/PurchaseAnalysis';
 import PurchaseForm from '@/components/PurchaseForm';
 import type { DecisionTimer } from '@/constants/purchase';
 import type { PurchaseFormData } from '@/hooks/purchase/usePurchase';
-import type { BasePurchaseInterface } from '@/types/purchase';
+import type { BasePurchaseInterface, PurchaseStatistics } from '@/types/purchase';
 
 interface PurchaseProps {
-  latestPurchase: BasePurchaseInterface | null;
+  previewStats: PurchaseStatistics | null;
+  confirmationPurchase: BasePurchaseInterface | null;
   formData: PurchaseFormData;
   isDisabled: boolean;
   submitError: string | null;
@@ -19,8 +20,14 @@ interface PurchaseProps {
   onAnalyze: () => void;
 }
 
+const toPreviewInvestYears = (value: string): number => {
+  const parsed = parseFloat(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+};
+
 const Purchase: React.FC<PurchaseProps> = ({
-  latestPurchase,
+  previewStats,
+  confirmationPurchase,
   formData,
   isDisabled,
   submitError,
@@ -52,7 +59,11 @@ const Purchase: React.FC<PurchaseProps> = ({
             />
           </div>
 
-          <PurchaseAnalysis purchase={latestPurchase} />
+          <PurchaseAnalysis
+            previewStats={previewStats}
+            previewInvestForYear={toPreviewInvestYears(formData.investForYear)}
+            confirmationPurchase={confirmationPurchase}
+          />
         </div>
       </section>
     </PageWrapper>
